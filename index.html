@@ -1,1438 +1,963 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TerraProof — Proof from the wild</title>
-  <meta name="description" content="TerraProof turns continuous, cryptographically signed field observations into a defensible Ecosystem Condition Index — verifiable biodiversity evidence for conservation, restoration, and nature finance.">
-  <link rel="canonical" href="https://terraproof.earth/">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 170'%3E%3Crect width='150' height='170' rx='24' fill='%2306080a'/%3E%3Cpath d='M75 6 L141 30 L141 82 C141 120 112 150 75 162 C38 150 9 120 9 82 L9 30 Z' fill='none' stroke='%23f5f6f7' stroke-width='5'/%3E%3Cpath d='M75 22 L127 40 L127 82 C127 112 105 136 75 146 C45 136 23 112 23 82 L23 40 Z' fill='%239ae6b4' fill-opacity='0.15' stroke='%239ae6b4' stroke-width='3'/%3E%3Cpath d='M38 48 L112 48 L112 62 L84 62 L84 122 L66 122 L66 62 L38 62 Z' fill='%23f5f6f7'/%3E%3Ccircle cx='75' cy='134' r='6' fill='%239ae6b4'/%3E%3C/svg%3E">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TerraProof — Verified Biodiversity Intelligence</title>
+<meta name="description" content="TerraProof turns continuous, cryptographically signed field observations into a defensible Ecosystem Condition Index — verified biodiversity intelligence for conservation, restoration, and nature finance.">
+<link rel="canonical" href="https://terraproof.earth/">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 170'%3E%3Crect width='150' height='170' rx='24' fill='%230C0F0D'/%3E%3Cpath d='M75 6 L141 30 L141 82 C141 120 112 150 75 162 C38 150 9 120 9 82 L9 30 Z' fill='none' stroke='%23E7E5DF' stroke-width='5'/%3E%3Cpath d='M38 48 L112 48 L112 62 L84 62 L84 122 L66 122 L66 62 L38 62 Z' fill='%23E7E5DF'/%3E%3Ccircle cx='75' cy='134' r='6' fill='%233BE477'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TerraProof">
+<meta property="og:title" content="TerraProof — Verified Biodiversity Intelligence">
+<meta property="og:description" content="Cryptographically signed, verifiable biodiversity intelligence — from edge-AI species detection to a defensible Ecosystem Condition Index.">
+<meta property="og:url" content="https://terraproof.earth/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TerraProof — Verified Biodiversity Intelligence">
+<meta name="twitter:description" content="Cryptographically signed, verifiable biodiversity intelligence — from edge-AI species detection to a defensible Ecosystem Condition Index.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"TerraProof","url":"https://terraproof.earth/","description":"TerraProof delivers verified biodiversity intelligence: continuous, cryptographically signed field observations fused into a defensible Ecosystem Condition Index for biodiversity monitoring, restoration verification, and nature finance."}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0C0F0D;
+  --fg:#E7E5DF;
+  --fg-dim:rgba(231,229,223,.55);
+  --fg-faint:rgba(231,229,223,.28);
+  --green:#3BE477;
+  --green-dim:rgba(59,228,119,.12);
+  --line:rgba(231,229,223,.14);
+  --ease-out-instrument:cubic-bezier(.16,1,.3,1);
+  --ease-inout:cubic-bezier(.65,0,.35,1);
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+  --disp:'Space Grotesk',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:var(--disp);font-weight:300;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+::selection{background:var(--green);color:var(--bg)}
 
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="TerraProof">
-  <meta property="og:title" content="TerraProof — Proof from the wild">
-  <meta property="og:description" content="Cryptographically signed, verifiable biodiversity evidence — from edge-AI species detection to a defensible Ecosystem Condition Index.">
-  <meta property="og:url" content="https://terraproof.earth/">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="TerraProof — Proof from the wild">
-  <meta name="twitter:description" content="Cryptographically signed, verifiable biodiversity evidence — from edge-AI species detection to a defensible Ecosystem Condition Index.">
+.eyebrow{font-family:var(--mono);font-size:12px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-dim);}
+.mono{font-family:var(--mono);font-weight:400}
+.tnum{font-feature-settings:"tnum";font-variant-numeric:tabular-nums}
+a{color:inherit}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:1px solid var(--green);outline-offset:3px;}
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "TerraProof",
-    "url": "https://terraproof.earth/",
-    "description": "TerraProof turns continuous, cryptographically signed field observations into a defensible Ecosystem Condition Index for biodiversity monitoring, restoration verification, and nature finance."
-  }
-  </script>
+/* header */
+header{position:fixed;inset:0 0 auto 0;z-index:10;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:22px clamp(20px,4vw,48px);mix-blend-mode:difference;}
+.wordmark{font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.22em;text-decoration:none;}
+.wordmark span{color:var(--green)}
+.hnav{display:flex;gap:26px;align-items:center}
+.hnav a{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;color:var(--fg-dim);transition:color .32s var(--ease-out-instrument);}
+.hnav a:hover{color:var(--fg)}
+@media(max-width:820px){.hnav a.hide{display:none}}
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #000000;
-      --bg-1: #06080a;
-      --bg-2: #0a0e11;
-      --surface: #0f1316;
-      --surface-2: #151a1e;
-      --line: rgba(255,255,255,0.08);
-      --line-2: rgba(255,255,255,0.14);
-      --text: #f5f6f7;
-      --text-dim: #a1a8af;
-      --text-mute: #6b727a;
-      --accent: #9ae6b4;   /* sage / aurora green */
-      --accent-2: #3ea27a; /* deep sage */
-      --accent-3: #cbd5dc; /* cool silver highlight */
-      --glow: rgba(154, 230, 180, 0.35);
-    }
-    * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-    html, body { background: var(--bg); color: var(--text); }
-    body {
-      font-family: 'Geist', ui-sans-serif, -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
-      overflow-x: hidden;
-    }
-    .serif { font-family: 'Instrument Serif', 'Times New Roman', serif; font-weight: 400; letter-spacing: -0.01em; }
-    .mono { font-family: 'Geist Mono', ui-monospace, 'SF Mono', monospace; }
+/* hero */
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:flex-end;}
+#field{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero-inner{position:relative;z-index:2;padding:0 clamp(20px,4vw,48px) clamp(72px,10vh,120px);max-width:1100px;}
+.hero .eyebrow{display:block;margin-bottom:22px}
+h1{font-size:clamp(52px,7vw,104px);font-weight:500;line-height:.98;letter-spacing:-.02em;}
+h1 .l2{display:block;color:var(--green)}
+.hero-copy{margin-top:28px;max-width:36em;font-size:17px;line-height:1.55;color:var(--fg-dim);}
+.btn{display:inline-block;margin-top:36px;font-family:var(--mono);font-size:13px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--fg);text-decoration:none;background:none;border:1px solid var(--fg-faint);padding:16px 30px;cursor:pointer;transition:border-color .32s var(--ease-out-instrument),color .32s var(--ease-out-instrument);position:relative;}
+.btn.pulse{animation:pulse 4s var(--ease-inout) infinite;}
+.btn:hover{border-color:var(--green);color:var(--green);animation:none}
+@keyframes pulse{0%,100%{border-color:rgba(231,229,223,.28)}50%{border-color:rgba(231,229,223,.6)}}
+.scroll-hint{position:absolute;left:clamp(20px,4vw,48px);bottom:26px;z-index:2;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-faint);text-decoration:none;transition:color .32s var(--ease-out-instrument);}
+.scroll-hint:hover{color:var(--fg-dim)}
 
-    /* Display type à la Apple — large, tight, balanced */
-    .display {
-      font-family: 'Geist', sans-serif;
-      font-weight: 600;
-      letter-spacing: -0.045em;
-      line-height: 0.96;
-      text-wrap: balance;
-    }
-    .display em { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; letter-spacing: -0.01em; color: var(--accent); }
+/* generic section */
+.section{padding:clamp(90px,12vh,160px) clamp(20px,4vw,48px)}
+.section.tline{border-top:1px solid var(--line)}
+.wrap{max-width:1240px;margin:0 auto}
+.wrap-narrow{max-width:900px;margin:0 auto}
+h2{font-size:clamp(32px,4.4vw,58px);font-weight:500;line-height:1.02;letter-spacing:-.02em}
+h2 em{font-style:normal;color:var(--green)}
+.sec-eyebrow{display:block;margin-bottom:22px}
+.lead{font-size:17px;line-height:1.55;color:var(--fg-dim);max-width:36em}
+.mt-sm{margin-top:20px}.mt-md{margin-top:40px}.mt-lg{margin-top:64px}
 
-    .h-hero   { font-size: clamp(52px, 10vw, 148px); }
-    .h-super  { font-size: clamp(40px, 7.5vw, 104px); }
-    .h-big    { font-size: clamp(32px, 5vw, 64px); }
-    .h-med    { font-size: clamp(22px, 2.6vw, 32px); }
+/* hairline grids (instrument aesthetic) */
+.grid3,.grid4{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
+.grid3{grid-template-columns:repeat(3,1fr)}
+.grid4{grid-template-columns:repeat(4,1fr)}
+.grid3>*,.grid4>*{background:var(--bg);padding:clamp(22px,2.4vw,34px)}
+@media(max-width:820px){.grid3{grid-template-columns:1fr}.grid4{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.grid4{grid-template-columns:1fr}}
+.cell .num{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--fg-faint);text-transform:uppercase}
+.cell h3{font-size:21px;font-weight:500;letter-spacing:-.01em;margin:18px 0 12px;line-height:1.1}
+.cell p{font-size:14px;line-height:1.62;color:var(--fg-dim)}
+.cell ul{list-style:none;margin-top:16px;display:grid;gap:7px}
+.cell li{font-family:var(--mono);font-size:12px;color:var(--fg-dim)}
+.cell li::before{content:"— ";color:var(--green)}
 
-    .eyebrow {
-      font-family: 'Geist Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-mute);
-    }
-    .eyebrow-accent { color: var(--accent); }
+/* stats */
+.stat-v{font-size:clamp(26px,3.2vw,40px);font-weight:500;letter-spacing:-.02em}
+.stat-v.g{color:var(--green)}
+.stat-l{font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--fg-dim);margin-top:12px;line-height:1.5}
+.note{font-family:var(--mono);font-size:12px;line-height:1.6;color:var(--fg-faint);border-left:1px solid var(--green-dim);padding-left:14px;max-width:44em}
+.note b{color:var(--fg-dim);font-weight:400}
 
-    /* Subtle grain */
-    .grain::after {
-      content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 80;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.035 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-      opacity: 0.6; mix-blend-mode: screen;
-    }
+/* method steps */
+.mstep{display:grid;grid-template-columns:120px 1fr;gap:clamp(20px,4vw,60px);padding:clamp(28px,4vw,48px) 0;border-top:1px solid var(--line)}
+.mstep:last-child{border-bottom:1px solid var(--line)}
+.mstep .mk{font-family:var(--mono);font-size:12px;letter-spacing:.12em;color:var(--green);text-transform:uppercase}
+.mstep h3{font-size:clamp(22px,2.6vw,32px);font-weight:500;letter-spacing:-.01em;line-height:1.05;margin-bottom:14px}
+.mstep p{font-size:15px;line-height:1.6;color:var(--fg-dim);max-width:44em}
+@media(max-width:640px){.mstep{grid-template-columns:1fr;gap:12px}}
 
-    /* Nav */
-    .nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 60;
-      backdrop-filter: saturate(180%) blur(22px);
-      -webkit-backdrop-filter: saturate(180%) blur(22px);
-      background: rgba(0,0,0,0.55);
-      border-bottom: 1px solid var(--line);
-      transition: background 0.3s, border-color 0.3s;
-    }
-    .nav-link {
-      font-size: 13px; color: var(--text-dim); transition: color 0.2s;
-      position: relative;
-    }
-    .nav-link:hover { color: var(--text); }
+/* live console (from theme) */
+.console{border:1px solid var(--line);position:relative;background:rgba(231,229,223,.015);}
+.console::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.14) 0 1px,transparent 1px 3px);opacity:.35;}
+.console-titlebar{display:flex;justify-content:space-between;align-items:center;gap:16px;border-bottom:1px solid var(--line);padding:12px 18px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-dim);}
+.console-titlebar .dot{color:var(--green)}
+.console-body{display:grid;grid-template-columns:1fr 380px}
+@media(max-width:920px){.console-body{grid-template-columns:1fr}}
+.feed{position:relative;border-right:1px solid var(--line);aspect-ratio:16/10;overflow:hidden;background:#080B09;}
+@media(max-width:920px){.feed{border-right:none;border-bottom:1px solid var(--line)}}
+#feedcv{position:absolute;inset:0;width:100%;height:100%}
+.feed-vignette{position:absolute;inset:0;pointer-events:none;background:radial-gradient(120% 90% at 50% 45%,transparent 55%,rgba(0,0,0,.55));}
+.feed-hud{position:absolute;top:12px;left:14px;right:14px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--fg-dim);text-transform:uppercase;pointer-events:none;}
+.rec{color:var(--green)}
+.rec::before{content:"●";margin-right:6px;animation:blink 2.4s steps(1) infinite}
+@keyframes blink{50%{opacity:.25}}
+.bbox{position:absolute;pointer-events:none}
+.bbox svg{overflow:visible;display:block}
+.bbox line{stroke:var(--green);stroke-width:1.5;transition:stroke-dashoffset 90ms linear;}
+.bbox .leader{transition:stroke-dashoffset 180ms linear;stroke-width:1}
+.bbox-label{position:absolute;white-space:nowrap;font-family:var(--mono);font-size:11px;color:var(--fg);background:rgba(12,15,13,.85);border:1px solid var(--green-dim);padding:4px 8px;opacity:0;transition:opacity 150ms var(--ease-out-instrument);}
+.bbox-label .sp{color:var(--green)}
+.bbox.out{opacity:0;transition:opacity .5s var(--ease-inout)}
+.telemetry{display:flex;flex-direction:column}
+.tblock{padding:16px 18px;border-bottom:1px solid var(--line)}
+.tblock:last-child{border-bottom:none;flex:1}
+.tblock h3{font-family:var(--mono);font-size:10px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-faint);margin-bottom:12px;}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:5px 18px;font-family:var(--mono);font-size:12px;line-height:1.7}
+.kv dt{color:var(--fg-dim)}
+.kv dd{text-align:right;font-feature-settings:"tnum"}
+.kv dd.ok{color:var(--green)}
+.spectro{position:relative;height:96px;border:1px solid var(--line);overflow:hidden;background:#080B09}
+#speccv{position:absolute;inset:0;width:100%;height:100%}
+.sweep{position:absolute;top:0;bottom:0;width:44px;right:0;background:linear-gradient(90deg,transparent,rgba(59,228,119,.12));opacity:0;pointer-events:none;}
+.sweep.on{animation:sweep .4s var(--ease-inout)}
+@keyframes sweep{0%{opacity:0}30%{opacity:1}100%{opacity:0}}
+.spec-cap{margin-top:8px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--fg-faint);text-transform:uppercase}
+.ledger{font-family:var(--mono);font-size:11.5px;line-height:1.6;overflow:hidden}
+.ledger-row{display:flex;gap:14px;justify-content:space-between;padding:5px 0;border-bottom:1px dashed rgba(231,229,223,.08);opacity:0;transform:translateY(12px);transition:opacity 260ms var(--ease-out-instrument),transform 260ms var(--ease-out-instrument);font-feature-settings:"tnum";}
+.ledger-row.in{opacity:1;transform:none}
+.ledger-row .t{color:var(--fg-dim)}
+.ledger-row .h{color:var(--fg-faint)}
+.ledger-row .mode{color:var(--green);font-size:10px;letter-spacing:.08em}
+.console-caption{max-width:1240px;margin:26px auto 0;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;font-size:16px;color:var(--fg-dim);}
+.console-caption a{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;color:var(--fg);transition:color .32s var(--ease-out-instrument);white-space:nowrap;}
+.console-caption a:hover{color:var(--green)}
 
-    /* Buttons */
-    .btn {
-      display: inline-flex; align-items: center; gap: 10px;
-      padding: 12px 22px;
-      border-radius: 999px;
-      font-size: 14px; font-weight: 500;
-      transition: transform 0.25s cubic-bezier(.2,.8,.2,1), background 0.25s, border-color 0.25s, color 0.25s, box-shadow 0.25s;
-      will-change: transform;
-      cursor: pointer;
-    }
-    .btn-primary {
-      background: var(--text);
-      color: #000;
-      border: 1px solid var(--text);
-    }
-    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 10px 30px rgba(255,255,255,0.12); }
-    .btn-ghost {
-      background: rgba(255,255,255,0.04);
-      color: var(--text);
-      border: 1px solid var(--line-2);
-    }
-    .btn-ghost:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.24); }
+/* dashboard screenshots */
+.shots{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media(max-width:820px){.shots{grid-template-columns:1fr}}
+.shot{border:1px solid var(--line);background:rgba(231,229,223,.015)}
+.shot-hero{margin-bottom:24px}
+.shot-bar{display:flex;gap:7px;align-items:center;padding:11px 14px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:11px;color:var(--fg-dim)}
+.shot-dot{width:9px;height:9px;border-radius:50%;background:var(--fg-faint);flex-shrink:0}
+.shot-url{margin-left:10px;letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.shot-img{position:relative;aspect-ratio:16/10;background:#080B09;overflow:hidden}
+.shot-hero .shot-img{aspect-ratio:16/9}
+.shot-img img,.shot-img video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+.shot-ph{position:absolute;inset:0;z-index:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;padding:18px;font-family:var(--mono);color:var(--fg-faint);background:repeating-linear-gradient(45deg,rgba(231,229,223,.015) 0 14px,transparent 14px 28px)}
+.shot-ph .l{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--fg-dim)}
+.shot-ph .f{font-size:11px}
+.shot figcaption{padding:14px 16px;border-top:1px solid var(--line);font-size:13px;line-height:1.55;color:var(--fg-dim)}
+.shot figcaption b{color:var(--fg);font-weight:500}
 
-    /* Badge / pill */
-    .pill {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 6px 12px;
-      border-radius: 999px;
-      font-family: 'Geist Mono', monospace;
-      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--text-dim);
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--line-2);
-    }
-    .pill .dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 0 3px rgba(154,230,180,0.18);
-      animation: pulse 2.2s ease-in-out infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 0 3px rgba(154,230,180,0.18); }
-      50% { box-shadow: 0 0 0 6px rgba(154,230,180,0.06); }
-    }
-    /* Muted pill for honesty/caveat strips — same shape as .pill, silver dot instead of green */
-    .pill-muted { color: var(--text-mute); font-style: italic; }
-    .pill-muted .dot { background: var(--accent-3); box-shadow: 0 0 0 3px rgba(203,213,220,0.12); animation: none; }
+/* roadmap phases + notify */
+.phase{background:var(--bg);padding:24px;text-align:center}
+.phase .p{font-size:30px;font-weight:500}
+.phase .s{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-dim);margin-top:8px}
+.phase .st{font-family:var(--mono);font-size:10px;margin-top:8px;letter-spacing:.06em;text-transform:uppercase}
+.notify{display:flex;gap:0;margin-top:32px;max-width:440px;border:1px solid var(--fg-faint)}
+.notify input{flex:1;background:none;border:none;font-family:var(--mono);font-size:13px;color:var(--fg);padding:14px 16px}
+.notify input:focus{outline:none}
+.notify button{background:none;border:none;border-left:1px solid var(--fg-faint);font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg);padding:0 20px;cursor:pointer;transition:color .3s,background .3s}
+.notify button:hover{color:var(--green)}
+#notifyMsg{font-family:var(--mono);font-size:11px;color:var(--fg-faint);margin-top:12px;letter-spacing:.04em}
 
-    /* Reveal on scroll */
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.9s cubic-bezier(.2,.8,.2,1), transform 0.9s cubic-bezier(.2,.8,.2,1); }
-    .reveal.in { opacity: 1; transform: translateY(0); }
-    .reveal-d1 { transition-delay: 0.08s; }
-    .reveal-d2 { transition-delay: 0.16s; }
-    .reveal-d3 { transition-delay: 0.24s; }
-    .reveal-d4 { transition-delay: 0.32s; }
+/* faq */
+.faq details{border-top:1px solid var(--line)}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:baseline;gap:24px;padding:24px 4px;}
+.faq summary::-webkit-details-marker{display:none}
+.faq .q{display:flex;gap:22px;align-items:baseline}
+.faq .qn{font-family:var(--mono);font-size:11px;color:var(--fg-faint);letter-spacing:.1em}
+.faq .qt{font-size:clamp(17px,2vw,21px);font-weight:300}
+.faq .plus{font-family:var(--mono);color:var(--fg-dim);font-size:22px;transition:transform .3s var(--ease-out-instrument)}
+.faq details[open] .plus{transform:rotate(45deg);color:var(--green)}
+.faq .a{padding:0 4px 26px calc(22px + 11px + 22px);max-width:70ch;font-size:15px;line-height:1.7;color:var(--fg-dim)}
+.faq .a a{color:var(--green)}
+@media(max-width:560px){.faq .a{padding-left:4px}}
 
-    /* Hero aurora + topo */
-    .hero-bg {
-      position: absolute; inset: 0; z-index: 0; overflow: hidden;
-    }
-    .aurora {
-      position: absolute; inset: -20%;
-      background:
-        radial-gradient(60% 50% at 30% 35%, rgba(62, 162, 122, 0.35) 0%, transparent 60%),
-        radial-gradient(50% 45% at 75% 55%, rgba(100, 180, 255, 0.16) 0%, transparent 60%),
-        radial-gradient(65% 60% at 50% 90%, rgba(154, 230, 180, 0.22) 0%, transparent 60%);
-      filter: blur(30px);
-      animation: drift 22s ease-in-out infinite alternate;
-    }
-    @keyframes drift {
-      0%   { transform: translate(-2%, -1%) scale(1); }
-      50%  { transform: translate(3%, 2%) scale(1.06); }
-      100% { transform: translate(-1%, 3%) scale(1.02); }
-    }
-    .hero-grid {
-      position: absolute; inset: 0;
-      background-image:
-        linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px);
-      background-size: 64px 64px;
-      mask-image: radial-gradient(80% 70% at 50% 50%, #000 30%, transparent 100%);
-      -webkit-mask-image: radial-gradient(80% 70% at 50% 50%, #000 30%, transparent 100%);
-    }
-    .hero-fade-bottom {
-      position: absolute; left: 0; right: 0; bottom: 0; height: 220px;
-      background: linear-gradient(to bottom, transparent, var(--bg));
-      pointer-events: none;
-    }
+/* pilot form */
+.pilot{position:relative;overflow:hidden}
+#gridfield{position:absolute;inset:0;width:100%;height:100%;opacity:.5}
+.pilot-inner{position:relative;z-index:2;max-width:620px;margin:0 auto}
+.pilot .eyebrow{display:block;margin-bottom:20px}
+.pilot p{font-size:17px;line-height:1.55;color:var(--fg-dim);max-width:34em}
+form.pf{margin-top:52px}
+.fieldrow{position:relative;margin-bottom:44px}
+.fieldrow label{position:absolute;left:0;top:8px;font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-dim);transition:all .32s var(--ease-out-instrument);pointer-events:none;}
+.fieldrow input,.fieldrow select{width:100%;background:none;border:none;border-bottom:1px solid var(--fg-faint);font-family:var(--mono);font-size:15px;color:var(--fg);padding:8px 0;border-radius:0;transition:border-color .32s var(--ease-out-instrument);}
+.fieldrow select{appearance:none;cursor:pointer}
+.fieldrow select option{background:var(--bg);color:var(--fg)}
+.fieldrow input:focus,.fieldrow select:focus{border-bottom-color:var(--green);outline:none}
+.fieldrow.float label,.fieldrow input:focus~label,.fieldrow select:focus~label{top:-16px;font-size:10px;color:var(--fg-faint);}
+.fieldrow .err{position:absolute;left:0;bottom:-20px;font-family:var(--mono);font-size:11px;color:var(--green);opacity:0;transition:opacity .2s;}
+.fieldrow.invalid .err{opacity:1}
+.fieldrow.invalid input{border-bottom-color:var(--green)}
+.submit-wrap{position:relative;display:inline-block;margin-top:8px}
+.submit-wrap svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;}
+.submit-wrap rect{fill:none;stroke:var(--green);stroke-width:1.5;stroke-dasharray:100;stroke-dashoffset:100;}
+.submit-wrap.tracing rect{animation:trace .6s var(--ease-inout) forwards}
+@keyframes trace{to{stroke-dashoffset:0}}
+.success{display:none;margin-top:52px;font-family:var(--mono);font-size:14px;color:var(--fg);line-height:1.6}
+.success .tick{color:var(--green);margin-right:10px}
+form.pf.done{display:none}
+.success.show{display:block;animation:fadein .5s var(--ease-out-instrument)}
+@keyframes fadein{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
-    /* Section gradients */
-    .sec-dark { background: linear-gradient(180deg, var(--bg) 0%, var(--bg-1) 100%); }
-    .sec-mid  { background: linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%); }
-    .sec-band { background: var(--bg-1); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+/* footer */
+footer{border-top:1px solid var(--line);padding:28px clamp(20px,4vw,48px);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-faint);}
+footer .fl{display:flex;gap:20px;flex-wrap:wrap}
+footer a{text-decoration:none;transition:color .3s}
+footer a:hover{color:var(--fg-dim)}
 
-    /* Glass card */
-    .glass {
-      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));
-      border: 1px solid var(--line-2);
-      border-radius: 22px;
-      backdrop-filter: blur(18px);
-    }
+/* reveal */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .8s var(--ease-out-instrument),transform .8s var(--ease-out-instrument)}
+.reveal.in{opacity:1;transform:none}
 
-    /* Proof card / device */
-    .record {
-      border-radius: 20px;
-      background: linear-gradient(180deg, #0e1215 0%, #060809 100%);
-      border: 1px solid var(--line-2);
-      box-shadow:
-        0 30px 80px rgba(0,0,0,0.55),
-        inset 0 1px 0 rgba(255,255,255,0.06);
-      position: relative;
-      overflow: hidden;
-    }
-    .record::before {
-      content: ""; position: absolute; inset: 0;
-      background: radial-gradient(circle at 80% -10%, rgba(154,230,180,0.16), transparent 40%);
-      pointer-events: none;
-    }
-    .record-row { display: flex; gap: 18px; padding: 10px 0; align-items: baseline; }
-    .record-row + .record-row { border-top: 1px dashed rgba(255,255,255,0.06); }
-    .record-key { color: var(--text-mute); font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; width: 96px; flex-shrink: 0; }
-    .record-val { font-family: 'Geist Mono', monospace; font-size: 13px; color: var(--text); }
-
-    /* Animated seal */
-    .seal-ring {
-      width: 120px; height: 120px; position: relative;
-    }
-    .seal-ring svg { width: 100%; height: 100%; }
-    .seal-ring .ring-path { stroke-dasharray: 358; stroke-dashoffset: 358; animation: draw 2.6s ease forwards 0.2s; }
-    @keyframes draw { to { stroke-dashoffset: 0; } }
-
-    /* Marquee */
-    .marquee {
-      display: flex; gap: 72px;
-      animation: marquee 40s linear infinite;
-      width: max-content;
-    }
-    @keyframes marquee {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    .marquee-mask {
-      mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
-      -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
-    }
-
-    /* Number reveal */
-    .stat-val {
-      font-family: 'Geist', sans-serif;
-      font-weight: 500;
-      letter-spacing: -0.04em;
-      font-size: clamp(44px, 6vw, 84px);
-      line-height: 1;
-      background: linear-gradient(180deg, #ffffff 0%, #8c9498 120%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    /* How-it-works step card */
-    .step {
-      position: relative;
-      border-radius: 24px;
-      background: linear-gradient(180deg, #0d1114 0%, #07090b 100%);
-      border: 1px solid var(--line);
-      overflow: hidden;
-      min-height: 420px;
-    }
-    .step-num {
-      font-family: 'Instrument Serif', serif;
-      font-size: 14px;
-      color: var(--text-mute);
-      letter-spacing: 0.08em;
-    }
-    .step h3 { font-family: 'Geist', sans-serif; font-weight: 500; letter-spacing: -0.02em; line-height: 1.05; }
-
-    /* Wave/topo visual */
-    .topo-box {
-      position: relative;
-      border-radius: 24px;
-      overflow: hidden;
-      background: linear-gradient(180deg, #0a0d10, #050607);
-      border: 1px solid var(--line);
-    }
-
-    /* Teaser (coming soon) device */
-    .teaser-stage {
-      position: relative;
-      min-height: 620px;
-      border-radius: 32px;
-      overflow: hidden;
-      background:
-        radial-gradient(60% 80% at 50% 20%, rgba(62,162,122,0.20), transparent 60%),
-        radial-gradient(50% 70% at 80% 90%, rgba(154,230,180,0.12), transparent 60%),
-        linear-gradient(180deg, #0c0f12 0%, #050607 100%);
-      border: 1px solid var(--line-2);
-    }
-    .teaser-stage::before {
-      content: ""; position: absolute; inset: 0;
-      background-image:
-        linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
-      background-size: 48px 48px;
-      mask-image: radial-gradient(70% 70% at 50% 50%, #000 30%, transparent 100%);
-      -webkit-mask-image: radial-gradient(70% 70% at 50% 50%, #000 30%, transparent 100%);
-    }
-    .device {
-      width: 320px; height: 410px;
-      border-radius: 36px;
-      position: relative;
-      background: linear-gradient(180deg, #1a1f23 0%, #0a0d10 100%);
-      border: 1px solid rgba(255,255,255,0.12);
-      box-shadow:
-        0 40px 120px rgba(0,0,0,0.6),
-        0 0 0 1px rgba(255,255,255,0.04) inset,
-        0 0 80px rgba(154,230,180,0.12);
-      animation: hover 6s ease-in-out infinite;
-    }
-    @keyframes hover {
-      0%, 100% { transform: translateY(-6px) rotate(-2deg); }
-      50% { transform: translateY(6px) rotate(-2deg); }
-    }
-    .device::before {
-      content: ""; position: absolute; inset: 8px;
-      border-radius: 28px;
-      background: radial-gradient(70% 50% at 50% 0%, rgba(154,230,180,0.18), transparent 60%), #05080a;
-      border: 1px solid rgba(255,255,255,0.06);
-    }
-    .device-lens {
-      position: absolute; top: 22px; left: 22px;
-      width: 56px; height: 56px; border-radius: 50%;
-      background: radial-gradient(circle at 35% 30%, #2a3236, #05080a 70%);
-      border: 1px solid rgba(255,255,255,0.15);
-      box-shadow: inset 0 0 12px rgba(0,0,0,0.6);
-    }
-    .device-lens::after {
-      content: ""; position: absolute; inset: 14px; border-radius: 50%;
-      background: radial-gradient(circle at 40% 35%, rgba(154,230,180,0.5), transparent 60%);
-      animation: lensBlink 4s ease-in-out infinite;
-    }
-    @keyframes lensBlink {
-      0%, 90%, 100% { opacity: 0.6; transform: scale(1); }
-      45% { opacity: 1; transform: scale(1.05); }
-    }
-    .device-label {
-      position: absolute; top: 28px; right: 22px;
-      font-family: 'Geist Mono', monospace;
-      font-size: 10px; letter-spacing: 0.14em; color: var(--text-mute);
-      text-transform: uppercase;
-    }
-    .device-screen {
-      position: absolute; left: 22px; right: 22px; bottom: 22px; top: 108px;
-      border-radius: 18px;
-      background: #03060a;
-      border: 1px solid rgba(255,255,255,0.08);
-      padding: 18px;
-      overflow: hidden;
-    }
-    .waveform {
-      stroke: var(--accent); fill: none; stroke-width: 1.6px;
-      stroke-dasharray: 1000; stroke-dashoffset: 1000;
-      animation: waveDraw 4s ease-in-out infinite;
-      filter: drop-shadow(0 0 4px rgba(154,230,180,0.5));
-    }
-    @keyframes waveDraw {
-      0% { stroke-dashoffset: 1000; }
-      50% { stroke-dashoffset: 0; }
-      100% { stroke-dashoffset: -1000; }
-    }
-
-    /* Orbiting particles around device */
-    .orbit {
-      position: absolute; left: 50%; top: 50%; width: 720px; height: 720px;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-    }
-    .orbit-ring {
-      position: absolute; inset: 0; border-radius: 50%;
-      border: 1px dashed rgba(255,255,255,0.08);
-      animation: spin 60s linear infinite;
-    }
-    .orbit-ring.b { inset: 70px; animation-duration: 45s; animation-direction: reverse; }
-    .orbit-ring.c { inset: 140px; animation-duration: 80s; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .orbit-dot {
-      position: absolute; top: -3px; left: 50%;
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 16px rgba(154,230,180,0.8);
-      transform: translateX(-50%);
-    }
-
-    /* Roadmap phase cell */
-    .count-cell {
-      background: linear-gradient(180deg, #0c1013 0%, #060809 100%);
-      border: 1px solid var(--line-2);
-      border-radius: 14px;
-      padding: 18px 14px;
-      text-align: center;
-      min-width: 88px;
-    }
-    .count-val {
-      font-family: 'Geist', sans-serif;
-      font-weight: 500; letter-spacing: -0.03em;
-      font-size: clamp(32px, 4vw, 44px);
-      color: var(--text);
-      line-height: 1;
-    }
-    .count-lbl {
-      font-family: 'Geist Mono', monospace;
-      font-size: 10px; letter-spacing: 0.18em;
-      color: var(--text-mute);
-      text-transform: uppercase;
-      margin-top: 10px;
-    }
-
-    /* FAQ */
-    details summary::-webkit-details-marker { display: none; }
-    details summary { list-style: none; cursor: pointer; }
-    details[open] .faq-plus { transform: rotate(45deg); }
-    .faq-plus { transition: transform 0.3s cubic-bezier(.2,.8,.2,1); display: inline-block; }
-    .faq-row { transition: background 0.2s; }
-    .faq-row:hover { background: rgba(255,255,255,0.02); }
-
-    /* Link underline */
-    .underline-anim { position: relative; }
-    .underline-anim::after {
-      content: ""; position: absolute; left: 0; right: 0; bottom: -2px;
-      height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left;
-      transition: transform 0.35s cubic-bezier(.2,.8,.2,1);
-    }
-    .underline-anim:hover::after { transform: scaleX(1); }
-
-    /* Logo mark */
-    .logo-mark {
-      width: 22px; height: 22px;
-      position: relative;
-      display: inline-block;
-    }
-    .logo-mark svg { width: 100%; height: 100%; display: block; }
-
-    /* Marquee items */
-    .marq-item {
-      font-family: 'Instrument Serif', serif;
-      font-size: 28px;
-      color: var(--text-dim);
-      white-space: nowrap;
-      font-style: italic;
-    }
-    .marq-dot { color: var(--accent); margin-left: 72px; opacity: 0.5; }
-
-    /* Subscribe input */
-    .field {
-      display: flex; align-items: center; gap: 8px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--line-2);
-      border-radius: 999px;
-      padding: 6px 6px 6px 20px;
-      transition: border-color 0.2s, background 0.2s;
-    }
-    .field:focus-within { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.05); }
-    .field input {
-      background: transparent; border: 0; outline: 0; color: var(--text);
-      font-size: 14px; flex: 1; font-family: 'Geist', sans-serif;
-    }
-    .field input::placeholder { color: var(--text-mute); }
-
-    /* Scroll hint */
-    .scroll-hint {
-      position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
-      display: flex; flex-direction: column; align-items: center; gap: 10px;
-      color: var(--text-mute);
-    }
-    .scroll-hint-line {
-      width: 1px; height: 36px;
-      background: linear-gradient(to bottom, transparent, var(--text-mute));
-      position: relative;
-    }
-    .scroll-hint-line::after {
-      content: ""; position: absolute; top: 0; left: 0; width: 1px; height: 12px;
-      background: var(--accent);
-      animation: scrollDot 2s ease-in-out infinite;
-    }
-    @keyframes scrollDot {
-      0% { top: 0; opacity: 0; }
-      25% { opacity: 1; }
-      100% { top: 24px; opacity: 0; }
-    }
-
-    /* Section divider */
-    .div-x {
-      display: flex; align-items: center; gap: 20px;
-    }
-    .div-x .line { flex: 1; height: 1px; background: var(--line); }
-
-    /* Ticker badge */
-    .ticker {
-      font-family: 'Geist Mono', monospace;
-      font-size: 11px; letter-spacing: 0.12em;
-      color: var(--text-mute);
-    }
-
-    ::selection { background: rgba(154,230,180,0.35); color: #fff; }
-
-    @media (max-width: 768px) {
-      .teaser-stage { min-height: 500px; }
-      .device { width: 240px; height: 320px; }
-      .orbit { width: 520px; height: 520px; }
-    }
-  </style>
+@media(max-width:640px){
+  .kv{grid-template-columns:auto 1fr;font-size:11px}
+  .hero-inner{padding-bottom:96px}
+}
+@media(max-width:480px){
+  h1{font-size:clamp(38px,11.5vw,56px)}
+  .ledger-row .h{display:none}
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  #field{opacity:.4}
+  .reveal{opacity:1;transform:none}
+}
+</style>
 </head>
+<body>
 
-<body class="grain">
+<header>
+  <a class="wordmark" href="#top">TERRA<span>PROOF</span></a>
+  <nav class="hnav">
+    <a class="hide" href="#method">Method</a>
+    <a class="hide" href="#dashboard">Dashboard</a>
+    <a class="hide" href="#faq">FAQ</a>
+    <a href="#pilot">Request Pilot Access →</a>
+  </nav>
+</header>
 
-  <!-- ─── NAV ─────────────────────────────────────────────── -->
-  <header class="nav">
-    <div class="max-w-[1240px] mx-auto px-6 md:px-10 py-4 flex items-center justify-between">
-      <a href="#top" class="flex items-center gap-3">
-        <svg width="38" height="43" viewBox="0 0 150 170" fill="none">
-          <path d="M75 6 L141 30 L141 82 C141 120 112 150 75 162 C38 150 9 120 9 82 L9 30 Z" fill="none" stroke="#f5f6f7" stroke-width="5"/>
-          <path d="M75 22 L127 40 L127 82 C127 112 105 136 75 146 C45 136 23 112 23 82 L23 40 Z" fill="#9ae6b4" fill-opacity="0.15" stroke="#9ae6b4" stroke-width="3"/>
-          <path d="M38 48 L112 48 L112 62 L84 62 L84 122 L66 122 L66 62 L38 62 Z" fill="#f5f6f7"/>
-          <circle cx="75" cy="134" r="6" fill="#9ae6b4"/>
-        </svg>
-        <span class="serif text-[26px]" style="letter-spacing:-0.02em; font-weight:600;">Terra<span style="color: var(--accent);">Proof</span></span>
-      </a>
-      <nav class="hidden md:flex items-center gap-9">
-        <a href="#approach" class="nav-link">Approach</a>
-        <a href="#how" class="nav-link">Method</a>
-        <a href="#dashboard" class="nav-link">Dashboard</a>
-        <a href="#device" class="nav-link">Device</a>
-        <a href="#cases" class="nav-link">Use cases</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-      </nav>
-      <div class="flex items-center gap-3">
-        <a href="#device" class="hidden md:inline-flex btn btn-ghost" style="padding: 8px 16px; font-size: 13px;">
-          <span class="w-1.5 h-1.5 rounded-full" style="background: var(--accent); box-shadow: 0 0 8px var(--accent);"></span>
-          Hardware · 2026
-        </a>
-        <a href="#contact" class="btn btn-primary" style="padding: 9px 18px; font-size: 13px;">
-          Request access
-        </a>
+<!-- ============ 1 · HERO ============ -->
+<section class="hero" id="top">
+  <canvas id="field" aria-hidden="true"></canvas>
+  <div class="hero-inner">
+    <span class="eyebrow">Field Pilot Program · Opening 2026</span>
+    <h1>Verified <span class="l2">Biodiversity Intelligence</span></h1>
+    <p class="hero-copy">Edge AI detects and classifies wildlife on-device, cryptographically signs every observation, and fuses it with satellite habitat data into one defensible ecosystem-condition score. Continuous, verifiable evidence for the conservation, restoration, and nature-finance decisions that can no longer run on paperwork.</p>
+    <a class="btn pulse" href="#pilot">Request Pilot Access</a>
+  </div>
+  <a class="scroll-hint" href="#console">↓ See the instrument</a>
+</section>
+
+<!-- ============ 2 · PREMISE ============ -->
+<section class="section" id="premise">
+  <div class="wrap reveal">
+    <span class="eyebrow sec-eyebrow">§ 01 — The premise</span>
+    <h2>Sensor data is cheap.<br><em>Trust</em> is not.</h2>
+    <p class="lead mt-md">Biodiversity decisions — species sign-off, restoration claims, credit issuance — now ride on field data that was never designed to be defended. TerraProof is the layer that makes it stand up.</p>
+    <div class="grid4 mt-lg">
+      <div><div class="stat-v">2,498</div><div class="stat-l">Species in the classification taxonomy</div></div>
+      <div><div class="stat-v">P-256</div><div class="stat-l">On-device signing curve (ECDSA + SHA-256)</div></div>
+      <div><div class="stat-v">Hash-chained</div><div class="stat-l">Local record integrity, pre-upload</div></div>
+      <div><div class="stat-v g">Multi-animal</div><div class="stat-l">Observations per signed record</div></div>
+    </div>
+    <p class="note mt-md">The species taxonomy applies once an animal is detected. Detection is <b>class-agnostic</b> — it localizes any animal in frame, then the classifier names the species.</p>
+  </div>
+</section>
+
+<!-- ============ 3 · APPROACH ============ -->
+<section class="section tline" id="approach">
+  <div class="wrap reveal">
+    <span class="eyebrow sec-eyebrow">§ 02 — Approach</span>
+    <h2>Three promises. <em>Held at the sensor.</em></h2>
+    <div class="grid3 mt-lg">
+      <div class="cell">
+        <div class="num">P.01</div>
+        <h3>Trust-first, from the device up.</h3>
+        <p>Every observation is anchored to a specific device, place, and moment — and signed before it leaves the field. What you receive is not a data point. It is testimony.</p>
+      </div>
+      <div class="cell">
+        <div class="num">P.02</div>
+        <h3>Built to wait, by design.</h3>
+        <p>The field node is built around duty-cycled wake, solar + LiFePO4 power, and a secure element that never streams raw data — a deliberate hardware design, now moving from architecture to build.</p>
+      </div>
+      <div class="cell">
+        <div class="num">P.03</div>
+        <h3>Edge intelligence, no cloud tether.</h3>
+        <p>Events are interpreted locally — waking compute only when something meaningful happens. Less energy, less bandwidth, less dependence on anyone else's uplink.</p>
       </div>
     </div>
-  </header>
+  </div>
+</section>
 
-  <!-- ─── HERO ────────────────────────────────────────────── -->
-  <section id="top" class="relative min-h-[100vh] flex items-center pt-28 pb-36 overflow-hidden">
-    <div class="hero-bg">
-      <div class="aurora"></div>
-      <div class="hero-grid"></div>
-    </div>
-    <div class="hero-fade-bottom"></div>
-
-    <div class="relative z-10 max-w-[1240px] mx-auto px-6 md:px-10 w-full">
-      <div class="reveal">
-        <div class="flex items-center gap-3 mb-10">
-          <span class="pill"><span class="dot"></span> Software live · pilot data now</span>
-          <span class="hidden md:inline ticker">TP-v0.1 · PILOT</span>
-        </div>
+<!-- ============ 4 · METHOD ============ -->
+<section class="section tline" id="method">
+  <div class="wrap reveal">
+    <span class="eyebrow sec-eyebrow">§ 03 — Method</span>
+    <h2>Four movements.<br><em>One sealed record.</em></h2>
+    <p class="lead mt-md">TerraProof does not stream raw data. It watches, interprets, seals — and hands you a record that travels without losing its integrity.</p>
+    <div class="mt-lg">
+      <div class="mstep">
+        <div class="mk">01 · Detect</div>
+        <div><h3>Watch for what matters.</h3><p>An on-device detection model scans every frame and localizes every animal in shot — class-agnostic, so nothing is missed for want of a matching category. Built to run behind a duty-cycled wake trigger in the field; today it runs against pilot and public camera-trap imagery.</p></div>
       </div>
-
-      <h1 class="display h-hero max-w-[1100px] reveal reveal-d1">
-        Proof from<br>the <em>wild</em>.
-      </h1>
-
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 mt-12 md:mt-16 items-end">
-        <p class="md:col-span-6 text-[18px] md:text-[21px] leading-[1.45] max-w-[580px] reveal reveal-d2" style="color: var(--text-dim);">
-          A working edge&nbsp;AI pipeline that detects and classifies wildlife, cryptographically signs every observation, and turns it into a defensible ecosystem-condition score — for conservation, restoration, and the nature-finance systems that need proof, not paperwork.
-        </p>
-        <div class="md:col-span-5 md:col-start-8 flex items-center gap-3 reveal reveal-d3">
-          <a href="#contact" class="btn btn-primary">
-            Request access
-            <svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M1 6h10M7 2l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-          <a href="#how" class="btn btn-ghost">
-            See the method
-          </a>
-        </div>
+      <div class="mstep">
+        <div class="mk">02 · Interpret</div>
+        <div><h3>On-device intelligence.</h3><p>When an event occurs, TerraProof wakes local compute to classify it — an on-device classification model scoring against a 2,498-species taxonomy. Species, individual count, confidence — resolved per frame, no cloud round-trip required.</p></div>
+      </div>
+      <div class="mstep">
+        <div class="mk">03 · Sign</div>
+        <div><h3>Tamper-evident, sealed in place.</h3><p>The event is bound to its device, coordinates, and timestamp, hashed, and signed with the private key before it ever touches a network. Alter one field afterward and the signature breaks — visibly, specifically, provably.</p></div>
+      </div>
+      <div class="mstep">
+        <div class="mk">04 · Export</div>
+        <div><h3>Evidence that travels without losing weight.</h3><p>Every record links to the previous one in a hash chain, then feeds into ESRS E4-5, TNFD Core, and Ökokonto / §41 BNatSchG-aligned reports — with full chain of custody from field to filing. Anyone downstream can verify, cold.</p></div>
       </div>
     </div>
+  </div>
+</section>
 
-    <div class="scroll-hint">
-      <span class="mono text-[10px] tracking-[0.2em] uppercase">Scroll</span>
-      <span class="scroll-hint-line"></span>
-    </div>
-  </section>
-
-  <!-- ─── STAT / BELIEF BAND ──────────────────────────────── -->
-  <section class="sec-dark py-24 md:py-32 border-t" style="border-color: var(--line);">
-    <div class="max-w-[1240px] mx-auto px-6 md:px-10">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 items-start">
-        <div class="md:col-span-7 reveal">
-          <div class="eyebrow mb-6">§ 01 — The premise</div>
-          <h2 class="display h-super">
-            Sensor data is cheap.<br><em>Trust</em> is not.
-          </h2>
-        </div>
-        <div class="md:col-span-4 md:col-start-9 reveal reveal-d1">
-          <p class="text-[17px] leading-[1.55]" style="color: var(--text-dim);">
-            Biodiversity decisions — species sign-off, restoration claims, credit issuance — now ride on field data that was never designed to be defended. TerraProof is the layer that makes it stand up.
-          </p>
-        </div>
+<!-- ============ 5 · LIVE CONSOLE ============ -->
+<section class="section tline" id="console">
+  <div class="wrap">
+    <span class="eyebrow sec-eyebrow reveal">§ 04 — The instrument</span>
+    <div class="console reveal">
+      <div class="console-titlebar">
+        <span><span class="dot">●</span>&nbsp; Simulated feed · Representative of production output</span>
+        <span class="tnum" id="clock">--:--:--</span>
       </div>
-
-      <!-- Stats -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10 mt-24">
-        <div class="reveal">
-          <div class="stat-val" data-count="2,498">&nbsp;</div>
-          <div class="eyebrow mt-3">Species in the classification taxonomy</div>
+      <div class="console-body">
+        <div class="feed">
+          <canvas id="feedcv"></canvas>
+          <div class="feed-vignette"></div>
+          <div class="feed-hud"><span class="rec">Optical</span><span>Sim-Field-01</span></div>
+          <div id="boxlayer" style="position:absolute;inset:0"></div>
         </div>
-        <div class="reveal reveal-d1">
-          <div class="stat-val" data-count="P-256">&nbsp;</div>
-          <div class="eyebrow mt-3">On-device signing curve (ECDSA + SHA-256)</div>
-        </div>
-        <div class="reveal reveal-d2">
-          <div class="stat-val" data-count="Hash-chained">&nbsp;</div>
-          <div class="eyebrow mt-3">Local record integrity, pre-upload</div>
-        </div>
-        <div class="reveal reveal-d3">
-          <div class="stat-val" data-count="Multi-animal">&nbsp;</div>
-          <div class="eyebrow mt-3">Observations per signed record</div>
-        </div>
-      </div>
-      <div class="mt-10 reveal reveal-d3">
-        <span class="pill pill-muted"><span class="dot"></span> Taxonomy applies once an animal is detected — current detection stage recognizes ~10 broad animal classes; coverage widens from here.</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── MARQUEE ─────────────────────────────────────────── -->
-  <section class="sec-band py-14 overflow-hidden">
-    <div class="max-w-[100vw] marquee-mask">
-      <div class="marquee">
-        <span class="marq-item">Protected species</span>
-        <span class="marq-item marq-dot">✦</span>
-        <span class="marq-item">Restoration verification</span>
-        <span class="marq-item marq-dot">✦</span>
-        <span class="marq-item">Biodiversity credits</span>
-        <span class="marq-item marq-dot">✦</span>
-        <span class="marq-item">Field audit</span>
-        <span class="marq-item marq-dot">✦</span>
-        <span class="marq-item">Research integrity</span>
-        <span class="marq-item marq-dot">✦</span>
-        <!-- duplicate for seamless loop -->
-        <span class="marq-item">Protected species</span>
-        <span class="marq-item marq-dot">✦</span>
-        <span class="marq-item">Restoration verification</span>
-        <span class="marq-item marq-dot">✦</span>
-        <span class="marq-item">Biodiversity credits</span>
-        <span class="marq-item marq-dot">✦</span>
-        <span class="marq-item">Field audit</span>
-        <span class="marq-item marq-dot">✦</span>
-        <span class="marq-item">Research integrity</span>
-        <span class="marq-item marq-dot">✦</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── APPROACH — three principles ─────────────────────── -->
-  <section id="approach" class="sec-mid py-24 md:py-36">
-    <div class="max-w-[1240px] mx-auto px-6 md:px-10">
-      <div class="reveal">
-        <div class="eyebrow mb-6">§ 02 — Approach</div>
-        <h2 class="display h-super max-w-[900px] mb-20">
-          Three promises. <em>Held at the sensor.</em>
-        </h2>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <div class="step p-8 md:p-10 reveal">
-          <div class="flex items-center justify-between mb-14">
-            <span class="step-num">P.01</span>
-            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-              <circle cx="20" cy="20" r="19" stroke="#9ae6b4" stroke-width="0.8" stroke-opacity="0.35"/>
-              <circle cx="20" cy="20" r="4" fill="#9ae6b4"/>
-              <path d="M20 1v6M20 33v6M1 20h6M33 20h6" stroke="#9ae6b4" stroke-width="0.8"/>
-            </svg>
+        <div class="telemetry">
+          <div class="tblock">
+            <h3>Site</h3>
+            <dl class="kv">
+              <dt>Site ID</dt><dd>SIM-FIELD-01</dd>
+              <dt>Coordinates</dt><dd>3°08'12"S 60°01'44"W</dd>
+              <dt>Elevation</dt><dd>92 m</dd>
+              <dt>Sensor uptime</dt><dd class="ok tnum" id="uptime">00:00:00</dd>
+              <dt>Optical</dt><dd>1080p · 30 fps</dd>
+              <dt>Acoustic</dt><dd>48 kHz · stereo</dd>
+            </dl>
           </div>
-          <h3 class="h-med mb-4">Trust-first,<br>from the device up.</h3>
-          <p class="text-[14px] leading-[1.65]" style="color: var(--text-dim);">
-            Every observation is anchored to a specific device, place, and moment — and signed before it leaves the field. What you receive is not a data point. It is testimony.
-          </p>
-        </div>
-        <div class="step p-8 md:p-10 reveal reveal-d1">
-          <div class="flex items-center justify-between mb-14">
-            <span class="step-num">P.02</span>
-            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-              <path d="M2 20 Q10 10 20 20 T38 20" stroke="#9ae6b4" stroke-width="1.2" fill="none" opacity="0.9"/>
-              <path d="M2 26 Q10 16 20 26 T38 26" stroke="#9ae6b4" stroke-width="1.2" fill="none" opacity="0.5"/>
-              <path d="M2 14 Q10 4 20 14 T38 14" stroke="#9ae6b4" stroke-width="1.2" fill="none" opacity="0.5"/>
-            </svg>
+          <div class="tblock">
+            <h3>Acoustic channel</h3>
+            <div class="spectro"><canvas id="speccv"></canvas><div class="sweep" id="sweep"></div></div>
+            <div class="spec-cap">Live spectrogram · 0–24 kHz</div>
           </div>
-          <h3 class="h-med mb-4">Built to wait,<br>by design.</h3>
-          <p class="text-[14px] leading-[1.65]" style="color: var(--text-dim);">
-            The field node architecture is built around duty-cycled wake, solar + LiFePO4 power, and a secure element that never streams raw data — a deliberate hardware design, now moving from architecture to build. <a href="#device" class="underline-anim" style="color: var(--accent);">See the roadmap.</a>
-          </p>
-        </div>
-        <div class="step p-8 md:p-10 reveal reveal-d2">
-          <div class="flex items-center justify-between mb-14">
-            <span class="step-num">P.03</span>
-            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-              <rect x="4" y="4" width="14" height="14" rx="2" stroke="#9ae6b4" stroke-width="0.8"/>
-              <rect x="22" y="4" width="14" height="14" rx="2" stroke="#9ae6b4" stroke-width="0.8"/>
-              <rect x="4" y="22" width="14" height="14" rx="2" stroke="#9ae6b4" stroke-width="0.8"/>
-              <rect x="22" y="22" width="14" height="14" rx="2" fill="#9ae6b4"/>
-            </svg>
+          <div class="tblock">
+            <h3>Event ledger</h3>
+            <div class="ledger" id="ledger"></div>
           </div>
-          <h3 class="h-med mb-4">Edge intelligence,<br>no cloud tether.</h3>
-          <p class="text-[14px] leading-[1.65]" style="color: var(--text-dim);">
-            Events are interpreted locally — waking compute only when something meaningful happens. Less energy, less bandwidth, less dependence on anyone else’s uplink.
-          </p>
         </div>
       </div>
     </div>
-  </section>
+    <div class="console-caption reveal">
+      <span>Every detection carries its evidence. Every record can be traced to the sensor that made it.</span>
+      <a href="#pilot">Request Pilot Access →</a>
+    </div>
+  </div>
+</section>
 
-  <!-- ─── METHOD — four steps with big visuals ────────────── -->
-  <section id="how" class="py-24 md:py-36 sec-dark">
-    <div class="max-w-[1240px] mx-auto px-6 md:px-10">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-20 md:mb-24 items-end">
-        <div class="md:col-span-7 reveal">
-          <div class="eyebrow mb-6">§ 03 — Method</div>
-          <h2 class="display h-super">
-            Four movements.<br><em>One sealed record.</em>
-          </h2>
-        </div>
-        <div class="md:col-span-4 md:col-start-9 reveal reveal-d1">
-          <p class="text-[16px] leading-[1.65]" style="color: var(--text-dim);">
-            TerraProof does not stream raw data. It watches, interprets, seals — and hands you a record that travels without losing its integrity.
-          </p>
-        </div>
+<!-- ============ 6 · DASHBOARD (real screenshots) ============ -->
+<section class="section tline" id="dashboard">
+  <div class="wrap reveal">
+    <span class="eyebrow sec-eyebrow">§ 05 — See it running</span>
+    <h2>Not a concept.<br><em>A running system.</em></h2>
+    <p class="lead mt-md">The pilot-partner dashboard is built and running today — turning signed field records into a decision-ready ecosystem verdict.</p>
+
+    <figure class="shot shot-hero mt-lg">
+      <div class="shot-bar"><span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-url">app.terraproof.earth · overview</span><span style="margin-left:auto;color:var(--green)">● live</span></div>
+      <div class="shot-img">
+        <div class="shot-ph"><span class="l">Dashboard · Overview</span><span class="f">assets/dashboard-overview.png</span></div>
+        <img src="assets/dashboard-overview.png" alt="TerraProof dashboard Overview — Ecosystem Condition Index, trend against baseline, and live evidence map" loading="lazy" onerror="this.style.display='none'">
       </div>
+    </figure>
 
-      <div class="space-y-10 md:space-y-16">
+    <div class="shots">
+      <figure class="shot">
+        <div class="shot-bar"><span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-url">app.terraproof.earth · evidence</span></div>
+        <div class="shot-img"><div class="shot-ph"><span class="l">Evidence</span><span class="f">assets/dashboard-evidence.png</span></div><img src="assets/dashboard-evidence.png" alt="Evidence — species and habitat sub-index breakdown with confidence tiers" loading="lazy" onerror="this.style.display='none'"></div>
+        <figcaption><b>Evidence.</b> Species and habitat sub-indices — richness, diversity, conservation weighting, satellite structure — fused, every number with its confidence tier.</figcaption>
+      </figure>
+      <figure class="shot">
+        <div class="shot-bar"><span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-url">app.terraproof.earth · proof</span></div>
+        <div class="shot-img"><div class="shot-ph"><span class="l">Proof</span><span class="f">assets/dashboard-proof.png</span></div><img src="assets/dashboard-proof.png" alt="Proof — signed, hash-chained ledger with live tamper-and-restore demo" loading="lazy" onerror="this.style.display='none'"></div>
+        <figcaption><b>Proof.</b> The signed ledger itself — hash-chained and independently verifiable, with the live "try to forge it" tamper-and-restore demo on real records.</figcaption>
+      </figure>
+      <figure class="shot">
+        <div class="shot-bar"><span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-url">app.terraproof.earth · live</span></div>
+        <div class="shot-img"><div class="shot-ph"><span class="l">Live</span><span class="f">assets/live_animaldetection.mp4</span></div><video src="assets/live_animaldetection.mp4" aria-label="Live — real-time recognition pipeline detecting and classifying wildlife frame by frame" autoplay muted loop playsinline preload="metadata" onerror="this.style.display='none'"></video></div>
+        <figcaption><b>Live.</b> The recognition pipeline in motion — detect, classify, sign, seal — with real per-stage inference timing on each captured frame.</figcaption>
+      </figure>
+      <figure class="shot">
+        <div class="shot-bar"><span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-dot"></span><span class="shot-url">app.terraproof.earth · report</span></div>
+        <div class="shot-img"><div class="shot-ph"><span class="l">Report</span><span class="f">assets/form_generation.mp4</span></div><video src="assets/form_generation.mp4" aria-label="Report — one-click ESRS/TNFD-structured disclosure export" autoplay muted loop playsinline preload="metadata" onerror="this.style.display='none'"></video></div>
+        <figcaption><b>Report.</b> One-click export into ESRS / TNFD-structured disclosure, ready to hand to an auditor.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
 
-        <!-- STEP 1 -->
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-14 items-center reveal">
-          <div class="md:col-span-5">
-            <div class="flex items-center gap-3 mb-6">
-              <span class="eyebrow eyebrow-accent">01 · DETECT</span>
-              <span class="h-px flex-1" style="background: var(--line);"></span>
-            </div>
-            <h3 class="h-big mb-5" style="font-family:'Geist'; font-weight:500; letter-spacing:-0.035em; line-height:1.02;">
-              Watch for what matters.<br><span style="color: var(--text-mute);">Ignore what doesn’t.</span>
-            </h3>
-            <p class="text-[15px] leading-[1.65]" style="color: var(--text-dim);">
-              A YOLOv26n detection pass scans every frame and flags what's worth attending to — every animal in shot, not just one. Built to eventually run behind a duty-cycled wake trigger in the field; today it runs against pilot and public camera-trap imagery.
-            </p>
-          </div>
-          <div class="md:col-span-7">
-            <div class="topo-box p-6" style="aspect-ratio: 16/10;">
-              <svg viewBox="0 0 600 360" class="w-full h-full">
-                <defs>
-                  <linearGradient id="waveG" x1="0" y1="0" x2="1" y2="0">
-                    <stop offset="0%" stop-color="#9ae6b4" stop-opacity="0"/>
-                    <stop offset="50%" stop-color="#9ae6b4" stop-opacity="1"/>
-                    <stop offset="100%" stop-color="#9ae6b4" stop-opacity="0"/>
-                  </linearGradient>
-                </defs>
-                <!-- baseline ticks -->
-                <g stroke="rgba(255,255,255,0.08)" stroke-width="0.6">
-                  <line x1="40"  y1="50" x2="40"  y2="310"/>
-                  <line x1="150" y1="50" x2="150" y2="310"/>
-                  <line x1="260" y1="50" x2="260" y2="310"/>
-                  <line x1="370" y1="50" x2="370" y2="310"/>
-                  <line x1="480" y1="50" x2="480" y2="310"/>
-                  <line x1="40"  y1="180" x2="560" y2="180" stroke-dasharray="2 4"/>
-                </g>
-                <!-- idle sensor -->
-                <path d="M40 180 L160 180 L170 175 L180 182 L200 180 L220 180 L260 180"
-                      stroke="rgba(255,255,255,0.35)" stroke-width="1.2" fill="none"/>
-                <!-- detected event (highlighted) -->
-                <path id="wavePath"
-                      d="M260 180 L280 130 L300 240 L320 100 L340 220 L360 150 L380 190 L400 170 L420 180 L440 180 L560 180"
-                      stroke="url(#waveG)" stroke-width="2" fill="none"
-                      stroke-dasharray="1000" stroke-dashoffset="1000">
-                  <animate attributeName="stroke-dashoffset" from="1000" to="0" dur="3s" fill="freeze" begin="0.3s"/>
-                </path>
-                <!-- event marker -->
-                <circle cx="320" cy="100" r="5" fill="#9ae6b4">
-                  <animate attributeName="r" values="5;10;5" dur="2s" repeatCount="indefinite"/>
-                  <animate attributeName="opacity" values="1;0.4;1" dur="2s" repeatCount="indefinite"/>
-                </circle>
-                <text x="340" y="95" fill="#9ae6b4" font-family="Geist Mono" font-size="11" letter-spacing="1">EVENT · t=04:12:07Z</text>
-                <!-- labels -->
-                <text x="40"  y="335" fill="rgba(255,255,255,0.4)" font-family="Geist Mono" font-size="9">00:00</text>
-                <text x="150" y="335" fill="rgba(255,255,255,0.4)" font-family="Geist Mono" font-size="9">02:00</text>
-                <text x="260" y="335" fill="rgba(255,255,255,0.4)" font-family="Geist Mono" font-size="9">04:00</text>
-                <text x="370" y="335" fill="rgba(255,255,255,0.4)" font-family="Geist Mono" font-size="9">06:00</text>
-                <text x="480" y="335" fill="rgba(255,255,255,0.4)" font-family="Geist Mono" font-size="9">08:00</text>
-                <text x="40"  y="42" fill="rgba(255,255,255,0.4)" font-family="Geist Mono" font-size="10" letter-spacing="1.5">SENSING · IDLE → WAKE</text>
-              </svg>
-            </div>
-          </div>
-        </div>
-
-        <!-- STEP 2 -->
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-14 items-center reveal">
-          <div class="md:col-span-5 md:order-2">
-            <div class="flex items-center gap-3 mb-6">
-              <span class="eyebrow eyebrow-accent">02 · INTERPRET</span>
-              <span class="h-px flex-1" style="background: var(--line);"></span>
-            </div>
-            <h3 class="h-big mb-5" style="font-family:'Geist'; font-weight:500; letter-spacing:-0.035em; line-height:1.02;">
-              On-device intelligence.<br><span style="color: var(--text-mute);">No cloud tether.</span>
-            </h3>
-            <p class="text-[15px] leading-[1.65]" style="color: var(--text-dim);">
-              When an event occurs, TerraProof wakes local compute to classify it — an EfficientNet V2-M classifier scoring against a 2,498-species taxonomy. Species, individual count, confidence — resolved per frame, no cloud round-trip required.
-            </p>
-          </div>
-          <div class="md:col-span-7 md:order-1">
-            <div class="topo-box p-8" style="aspect-ratio: 16/10;">
-              <div class="flex items-center justify-center h-full relative">
-                <!-- central node -->
-                <div class="relative" style="width: 100%; max-width: 520px;">
-                  <svg viewBox="0 0 520 300" class="w-full">
-                    <!-- connections -->
-                    <g stroke="rgba(154,230,180,0.25)" stroke-width="0.8" fill="none">
-                      <path d="M260 150 L100 80"/>
-                      <path d="M260 150 L420 80"/>
-                      <path d="M260 150 L80 220"/>
-                      <path d="M260 150 L440 220"/>
-                      <path d="M260 150 L260 40"/>
-                      <path d="M260 150 L260 260"/>
-                    </g>
-                    <!-- pulses -->
-                    <circle cx="260" cy="150" r="60" stroke="#9ae6b4" stroke-width="0.6" fill="none" opacity="0.3">
-                      <animate attributeName="r" values="60;100;60" dur="3s" repeatCount="indefinite"/>
-                      <animate attributeName="opacity" values="0.5;0;0.5" dur="3s" repeatCount="indefinite"/>
-                    </circle>
-                    <circle cx="260" cy="150" r="40" fill="#0a0d10" stroke="#9ae6b4" stroke-width="1.2"/>
-                    <text x="260" y="148" text-anchor="middle" fill="#f5f6f7" font-family="Geist Mono" font-size="10" letter-spacing="1.2">EDGE</text>
-                    <text x="260" y="162" text-anchor="middle" fill="#9ae6b4" font-family="Geist Mono" font-size="10" letter-spacing="1.2">ONNX</text>
-                    <!-- leaves -->
-                    <circle cx="100" cy="80" r="4" fill="#9ae6b4"/><text x="110" y="84" fill="rgba(255,255,255,0.7)" font-family="Geist Mono" font-size="10">audio</text>
-                    <circle cx="420" cy="80" r="4" fill="#9ae6b4"/><text x="430" y="84" fill="rgba(255,255,255,0.7)" font-family="Geist Mono" font-size="10">visual</text>
-                    <circle cx="80"  cy="220" r="4" fill="#9ae6b4"/><text x="90"  y="224" fill="rgba(255,255,255,0.7)" font-family="Geist Mono" font-size="10">class · genet · 0.81</text>
-                    <circle cx="440" cy="220" r="4" fill="#9ae6b4"/><text x="450" y="224" fill="rgba(255,255,255,0.7)" font-family="Geist Mono" font-size="10" text-anchor="start">motion</text>
-                    <circle cx="260" cy="40"  r="4" fill="#9ae6b4"/><text x="260" y="30"  text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="Geist Mono" font-size="10">class · Lutra lutra · 0.94 (of 2,498)</text>
-                    <circle cx="260" cy="260" r="4" fill="#9ae6b4"/><text x="260" y="280" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="Geist Mono" font-size="10">time · place · device</text>
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- STEP 3 -->
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-14 items-center reveal">
-          <div class="md:col-span-5">
-            <div class="flex items-center gap-3 mb-6">
-              <span class="eyebrow eyebrow-accent">03 · SIGN</span>
-              <span class="h-px flex-1" style="background: var(--line);"></span>
-            </div>
-            <h3 class="h-big mb-5" style="font-family:'Geist'; font-weight:500; letter-spacing:-0.035em; line-height:1.02;">
-              Tamper-evident,<br><span style="color: var(--text-mute);">sealed in place.</span>
-            </h3>
-            <p class="text-[15px] leading-[1.65]" style="color: var(--text-dim);">
-              The event is bound to its device, coordinates, and timestamp, hashed, and signed with the private key before it ever touches a network. Alter one field afterward and the signature breaks — visibly, specifically, provably. Try it below.
-            </p>
-          </div>
-          <div class="md:col-span-7">
-            <div class="topo-box p-8 flex flex-col items-center justify-center gap-6">
-              <div class="record w-full max-w-[520px] p-6">
-                <div class="flex items-center justify-between mb-4 pb-4" style="border-bottom: 1px dashed rgba(255,255,255,0.08);">
-                  <span class="mono text-[10px] tracking-[0.16em] uppercase" style="color: var(--text-mute);">Signed record · TP_0x4A9E</span>
-                  <span class="flex items-center gap-2 text-[10px] mono uppercase tracking-[0.12em]" style="color: var(--accent);">
-                    <span class="w-1.5 h-1.5 rounded-full" style="background: var(--accent); box-shadow: 0 0 8px var(--accent);"></span>
-                    Verified
-                  </span>
-                </div>
-                <div class="record-row"><span class="record-key">Event</span><span class="record-val">tp_0x4a9e…f21c</span></div>
-                <div class="record-row"><span class="record-key">Species</span><span class="record-val">Lutra lutra <span style="color: var(--text-mute);">·</span> conf 0.94</span></div>
-                <div class="record-row"><span class="record-key">Captured</span><span class="record-val">2026-03-14 04:12:07Z</span></div>
-                <div class="record-row"><span class="record-key">Coords</span><span class="record-val">51.4812, -3.1791 ±3m</span></div>
-                <div class="record-row"><span class="record-key">Device</span><span class="record-val">pilot-run-014</span></div>
-                <div class="record-row"><span class="record-key">Signature</span><span class="record-val" style="color: var(--accent);">ecdsa-p256 · sha-256 · verified ✓</span></div>
-                <div class="record-row"><span class="record-key">Chain</span><span class="record-val" style="color: var(--accent);">linked to prev hash ✓</span></div>
-              </div>
-
-              <!-- Try to forge it: sealed → tampered → restored, live in the real system -->
-              <div class="w-full max-w-[520px] grid grid-cols-3 gap-3">
-                <div class="glass p-4 flex flex-col items-center text-center gap-2">
-                  <div class="seal-ring" style="width:44px; height:44px;">
-                    <svg viewBox="0 0 128 128">
-                      <circle cx="64" cy="64" r="56" stroke="rgba(255,255,255,0.1)" stroke-width="4" fill="none"/>
-                      <circle class="ring-path" cx="64" cy="64" r="56" stroke="#9ae6b4" stroke-width="4" fill="none" stroke-linecap="round" transform="rotate(-90 64 64)"/>
-                      <path d="M42 66 L58 80 L88 48" stroke="#9ae6b4" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </div>
-                  <div class="mono text-[10px] uppercase tracking-[0.14em]" style="color: var(--accent);">Sealed</div>
-                  <div class="text-[11px] leading-[1.5]" style="color: var(--text-mute);">Signature matches the original hash.</div>
-                </div>
-                <div class="glass p-4 flex flex-col items-center text-center gap-2">
-                  <div class="seal-ring" style="width:44px; height:44px;">
-                    <svg viewBox="0 0 128 128">
-                      <circle cx="64" cy="64" r="56" stroke="rgba(255,255,255,0.1)" stroke-width="4" fill="none"/>
-                      <circle cx="64" cy="64" r="56" stroke="#e0665b" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="9 10" transform="rotate(-90 64 64)"/>
-                      <path d="M46 46 L82 82 M82 46 L46 82" stroke="#e0665b" stroke-width="6" stroke-linecap="round"/>
-                    </svg>
-                  </div>
-                  <div class="mono text-[10px] uppercase tracking-[0.14em]" style="color: #e0665b;">Tampered</div>
-                  <div class="text-[11px] leading-[1.5]" style="color: var(--text-mute);">Field mismatch on <span class="mono">species</span> — seal breaks.</div>
-                </div>
-                <div class="glass p-4 flex flex-col items-center text-center gap-2">
-                  <div class="seal-ring" style="width:44px; height:44px;">
-                    <svg viewBox="0 0 128 128">
-                      <circle cx="64" cy="64" r="56" stroke="rgba(255,255,255,0.1)" stroke-width="4" fill="none"/>
-                      <circle class="ring-path" cx="64" cy="64" r="56" stroke="#9ae6b4" stroke-width="4" fill="none" stroke-linecap="round" transform="rotate(-90 64 64)" style="animation-delay: 0.9s;"/>
-                      <path d="M42 66 L58 80 L88 48" stroke="#9ae6b4" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </div>
-                  <div class="mono text-[10px] uppercase tracking-[0.14em]" style="color: var(--accent);">Restored</div>
-                  <div class="text-[11px] leading-[1.5]" style="color: var(--text-mute);">Reverted to the original — re-verified, seal re-completes.</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- STEP 4 -->
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-14 items-center reveal">
-          <div class="md:col-span-5 md:order-2">
-            <div class="flex items-center gap-3 mb-6">
-              <span class="eyebrow eyebrow-accent">04 · EXPORT</span>
-              <span class="h-px flex-1" style="background: var(--line);"></span>
-            </div>
-            <h3 class="h-big mb-5" style="font-family:'Geist'; font-weight:500; letter-spacing:-0.035em; line-height:1.02;">
-              Evidence that travels<br><span style="color: var(--text-mute);">without losing weight.</span>
-            </h3>
-            <p class="text-[15px] leading-[1.65]" style="color: var(--text-dim);">
-              Every record links to the previous one in a hash chain, then feeds into ESRS E4-5, TNFD Core, and Ökokonto / §41 BNatSchG-aligned reports — with full chain of custody from field to filing. Anyone downstream can verify, cold.
-            </p>
-          </div>
-          <div class="md:col-span-7 md:order-1">
-            <div class="topo-box p-8" style="aspect-ratio: 16/10;">
-              <svg viewBox="0 0 520 300" class="w-full h-full">
-                <!-- source -->
-                <rect x="30" y="130" width="100" height="40" rx="8" fill="#0a0d10" stroke="#9ae6b4" stroke-width="1"/>
-                <text x="80" y="155" text-anchor="middle" fill="#f5f6f7" font-family="Geist Mono" font-size="10">TP RECORD</text>
-                <!-- targets -->
-                <g font-family="Geist Mono" font-size="10" fill="rgba(255,255,255,0.7)">
-                  <rect x="350" y="40" width="150" height="36" rx="6" fill="none" stroke="rgba(255,255,255,0.15)"/>
-                  <text x="425" y="62" text-anchor="middle">ESRS E4-5 (CSRD)</text>
-                  <rect x="350" y="100" width="150" height="36" rx="6" fill="none" stroke="rgba(255,255,255,0.15)"/>
-                  <text x="425" y="122" text-anchor="middle">TNFD Core</text>
-                  <rect x="350" y="160" width="150" height="36" rx="6" fill="none" stroke="rgba(255,255,255,0.15)"/>
-                  <text x="425" y="182" text-anchor="middle">Ökokonto / §41</text>
-                  <rect x="350" y="220" width="150" height="36" rx="6" fill="none" stroke="rgba(255,255,255,0.15)"/>
-                  <text x="425" y="242" text-anchor="middle">Credit registries (future)</text>
-                </g>
-                <!-- flowing lines -->
-                <g stroke="#9ae6b4" stroke-width="1" fill="none" opacity="0.6">
-                  <path d="M130 150 C220 150, 260 58,  350 58" stroke-dasharray="3 3">
-                    <animate attributeName="stroke-dashoffset" from="30" to="0" dur="1.5s" repeatCount="indefinite"/>
-                  </path>
-                  <path d="M130 150 C220 150, 260 118, 350 118" stroke-dasharray="3 3">
-                    <animate attributeName="stroke-dashoffset" from="30" to="0" dur="1.8s" repeatCount="indefinite"/>
-                  </path>
-                  <path d="M130 150 C220 150, 260 178, 350 178" stroke-dasharray="3 3">
-                    <animate attributeName="stroke-dashoffset" from="30" to="0" dur="2.1s" repeatCount="indefinite"/>
-                  </path>
-                  <path d="M130 150 C220 150, 260 238, 350 238" stroke-dasharray="3 3">
-                    <animate attributeName="stroke-dashoffset" from="30" to="0" dur="2.4s" repeatCount="indefinite"/>
-                  </path>
-                </g>
-              </svg>
-            </div>
-          </div>
-        </div>
-
+<!-- ============ 7 · USE CASES ============ -->
+<section class="section tline" id="cases">
+  <div class="wrap reveal">
+    <span class="eyebrow sec-eyebrow">§ 06 — Use cases</span>
+    <h2>Where a <em>stronger record</em> changes the outcome.</h2>
+    <div class="grid3 mt-lg">
+      <div class="cell">
+        <div class="num">Case · 01</div>
+        <h3>Protected species</h3>
+        <p>Presence claims you can actually present — to regulators, to developers, to anyone whose decision turns on whether the animal was really there.</p>
+        <ul><li>Species ID with confidence</li><li>Signed device, time, place</li><li>Audit-ready record per event</li></ul>
+      </div>
+      <div class="cell">
+        <div class="num">Case · 02</div>
+        <h3>Restoration verification</h3>
+        <p>Moving past "we planted X." TerraProof turns the return of fauna into a defensible, dated, location-bound record.</p>
+        <ul><li>Return-of-species events</li><li>Baseline vs. post-intervention</li><li>Evidence stream into MRV</li></ul>
+      </div>
+      <div class="cell">
+        <div class="num">Case · 03</div>
+        <h3>Nature finance</h3>
+        <p>Biodiversity credits will only be worth what their field evidence can carry. TerraProof is built for the day that bar is raised.</p>
+        <ul><li>Registry-grade observations</li><li>Per-event provenance chain</li><li>Verifiable independent of operator</li></ul>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ─── DEVICE / COMING SOON ────────────────────────────── -->
-  <section id="device" class="py-24 md:py-36 sec-mid">
-    <div class="max-w-[1240px] mx-auto px-6 md:px-10">
-      <div class="flex items-center justify-between flex-wrap gap-4 mb-10 reveal">
-        <div class="flex items-center gap-4">
-          <div class="eyebrow">§ 04 — The roadmap</div>
-          <span class="pill"><span class="dot"></span> Roadmap · Phase D</span>
-        </div>
-        <span class="ticker">TP-NODE-017</span>
-      </div>
-
-      <h2 class="display h-super max-w-[960px] mb-16 md:mb-20 reveal reveal-d1">
-        From proven software to<br>a purpose-built <em>node</em>.
-      </h2>
-
-      <!-- Teaser stage -->
-      <div class="teaser-stage flex items-center justify-center relative">
-        <!-- orbiting rings -->
-        <div class="orbit">
-          <div class="orbit-ring"><span class="orbit-dot"></span></div>
-          <div class="orbit-ring b"><span class="orbit-dot" style="background: #cbd5dc; box-shadow: 0 0 14px rgba(255,255,255,0.4);"></span></div>
-          <div class="orbit-ring c"><span class="orbit-dot"></span></div>
-        </div>
-
-        <!-- floating mock device -->
-        <div class="device relative z-10">
-          <div class="device-lens"></div>
-          <div class="device-label">TP · 017</div>
-          <div class="device-screen">
-            <div class="flex items-center justify-between mb-3">
-              <span class="mono text-[9px] tracking-[0.2em] uppercase" style="color: var(--text-mute);">Live</span>
-              <span class="mono text-[9px] tracking-[0.2em] uppercase" style="color: var(--accent);">● REC</span>
-            </div>
-            <svg viewBox="0 0 260 160" class="w-full h-[100px]">
-              <path class="waveform" d="M0 80 Q15 30 30 80 T60 80 Q75 130 90 80 T120 80 Q135 40 150 80 T180 80 Q195 120 210 80 T240 80 Q255 55 260 80"/>
-            </svg>
-            <div class="mt-4 pt-3" style="border-top: 1px dashed rgba(255,255,255,0.1);">
-              <div class="flex justify-between text-[10px] mono mb-1.5" style="color: var(--text-dim);">
-                <span style="color: var(--text-mute);">SPECIES</span><span>Lutra lutra</span>
-              </div>
-              <div class="flex justify-between text-[10px] mono mb-1.5" style="color: var(--text-dim);">
-                <span style="color: var(--text-mute);">CONF</span><span>0.94</span>
-              </div>
-              <div class="flex justify-between text-[10px] mono" style="color: var(--text-dim);">
-                <span style="color: var(--text-mute);">SIG</span><span style="color: var(--accent);">✓ sealed</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- floating labels / callouts — real design targets, not measured hardware specs -->
-        <div class="absolute top-10 left-10 hidden md:block">
-          <div class="glass px-4 py-3">
-            <div class="mono text-[9px] tracking-[0.18em] uppercase" style="color: var(--text-mute);">Wake</div>
-            <div class="serif text-[20px] mt-0.5" style="letter-spacing:-0.02em;">PIR-triggered</div>
-          </div>
-        </div>
-        <div class="absolute top-10 right-10 hidden md:block">
-          <div class="glass px-4 py-3 text-right">
-            <div class="mono text-[9px] tracking-[0.18em] uppercase" style="color: var(--text-mute);">Secure element</div>
-            <div class="serif text-[20px] mt-0.5" style="letter-spacing:-0.02em;">ATECC608A</div>
-          </div>
-        </div>
-        <div class="absolute bottom-10 left-10 hidden md:block">
-          <div class="glass px-4 py-3">
-            <div class="mono text-[9px] tracking-[0.18em] uppercase" style="color: var(--text-mute);">Power</div>
-            <div class="serif text-[20px] mt-0.5" style="letter-spacing:-0.02em;">Solar + LiFePO4</div>
-          </div>
-        </div>
-        <div class="absolute bottom-10 right-10 hidden md:block">
-          <div class="glass px-4 py-3 text-right">
-            <div class="mono text-[9px] tracking-[0.18em] uppercase" style="color: var(--text-mute);">Signing</div>
-            <div class="serif text-[20px] mt-0.5" style="letter-spacing:-0.02em;">ECDSA P-256</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="mt-6 reveal">
-        <span class="pill pill-muted"><span class="dot"></span> Architecture shown reflects current hardware design targets — not yet built, benchmarked, or field-tested.</span>
-      </div>
-
-      <!-- roadmap phase tracker + subscribe -->
-      <div class="mt-16 md:mt-20 grid grid-cols-1 md:grid-cols-12 gap-10 items-center reveal">
-        <div class="md:col-span-7">
-          <h3 class="h-big mb-5" style="font-family:'Geist'; font-weight:500; letter-spacing:-0.035em; line-height:1.02;">
-            The software you’ve just read<br>about is running <em style="font-family:'Instrument Serif'; font-style:italic; color: var(--accent);">today</em>.
-          </h3>
-          <p class="text-[15px] leading-[1.65] max-w-[520px]" style="color: var(--text-dim);">
-            The hardware node — camera, standard + ultrasonic microphones for birdsong and bat calls, an environmental sensor, GPS, and a secure element — is the architecture we’re building toward next. Join the list to hear when it moves from design to field.
-          </p>
-        </div>
-        <div class="md:col-span-5">
-          <div class="flex items-center gap-3 mb-5">
-            <div class="count-cell">
-              <div class="count-val" style="color: var(--accent); font-size: clamp(24px,3vw,32px);">A</div>
-              <div class="count-lbl">Species scoring</div>
-              <div class="mono text-[9px] mt-1.5 uppercase tracking-[0.1em]" style="color: var(--accent);">Complete</div>
-            </div>
-            <div class="count-cell">
-              <div class="count-val" style="color: var(--text-dim); font-size: clamp(24px,3vw,32px);">B</div>
-              <div class="count-lbl">Satellite fusion</div>
-              <div class="mono text-[9px] mt-1.5 uppercase tracking-[0.1em]" style="color: var(--text-dim);">In progress</div>
-            </div>
-            <div class="count-cell">
-              <div class="count-val" style="color: var(--text-dim); font-size: clamp(24px,3vw,32px);">C</div>
-              <div class="count-lbl">ECI + trend</div>
-              <div class="mono text-[9px] mt-1.5 uppercase tracking-[0.1em]" style="color: var(--text-dim);">In progress</div>
-            </div>
-            <div class="count-cell">
-              <div class="count-val" style="color: var(--text-mute); font-size: clamp(24px,3vw,32px);">D</div>
-              <div class="count-lbl">Hardware node</div>
-              <div class="mono text-[9px] mt-1.5 uppercase tracking-[0.1em]" style="color: var(--text-mute);">Upcoming</div>
-            </div>
-          </div>
-          <form class="field" onsubmit="event.preventDefault(); this.querySelector('input').blur(); this.querySelector('[data-msg]').textContent = 'You\u2019re on the list.'; this.querySelector('input').value='';">
-            <input type="email" required placeholder="you@field.org" aria-label="Email">
-            <button type="submit" class="btn btn-primary" style="padding: 10px 18px; font-size: 13px;">Notify me</button>
-          </form>
-          <p class="mono text-[11px] mt-3" style="color: var(--text-mute);" data-msg>No spam. Roadmap updates only.</p>
-        </div>
-      </div>
+<!-- ============ 8 · ROADMAP ============ -->
+<section class="section tline" id="roadmap">
+  <div class="wrap reveal">
+    <span class="eyebrow sec-eyebrow">§ 07 — The roadmap</span>
+    <h2>From proven software to a<br>purpose-built <em>node</em>.</h2>
+    <p class="lead mt-md">The software you've just read about is running today. The hardware node — camera, standard + ultrasonic microphones for birdsong and bat calls, an environmental sensor, GPS, and a secure element — is the architecture we're building toward next.</p>
+    <div class="grid4 mt-lg">
+      <div class="phase"><div class="p" style="color:var(--green)">A</div><div class="s">Species scoring</div><div class="st" style="color:var(--green)">Complete</div></div>
+      <div class="phase"><div class="p">B</div><div class="s">Satellite fusion</div><div class="st" style="color:var(--fg-dim)">In progress</div></div>
+      <div class="phase"><div class="p">C</div><div class="s">ECI + trend</div><div class="st" style="color:var(--fg-dim)">In progress</div></div>
+      <div class="phase"><div class="p" style="color:var(--fg-faint)">D</div><div class="s">Hardware node</div><div class="st" style="color:var(--fg-faint)">Upcoming</div></div>
     </div>
-  </section>
+    <p class="note mt-md">Architecture shown reflects current hardware design targets — <b>not yet built, benchmarked, or field-tested.</b></p>
 
-  <!-- ─── SEE IT RUNNING — the dashboard, real and running ─── -->
-  <section id="dashboard" class="py-24 md:py-36 sec-dark">
-    <div class="max-w-[1240px] mx-auto px-6 md:px-10">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-16 md:mb-20 items-end">
-        <div class="md:col-span-7 reveal">
-          <div class="eyebrow mb-6">§ 05 — See it running</div>
-          <h2 class="display h-super">
-            Not a concept.<br><em>A running system.</em>
-          </h2>
-        </div>
-        <div class="md:col-span-4 md:col-start-9 reveal reveal-d1">
-          <p class="text-[16px] leading-[1.65]" style="color: var(--text-dim);">
-            The pilot-partner dashboard below is built and running today — four screens that turn signed field records into a decision-ready ecosystem verdict.
-          </p>
-        </div>
-      </div>
+    <!-- Notify — posts to Formspree -->
+    <form class="notify js-ajax" action="https://formspree.io/f/mqevwnyy" method="POST" data-msg-target="#notifyMsg" data-ok="You're on the list.">
+      <input type="hidden" name="intent" value="notify">
+      <input type="email" name="email" required placeholder="you@field.org" aria-label="Email">
+      <button type="submit">Notify me</button>
+    </form>
+    <p id="notifyMsg">No spam. Roadmap updates only.</p>
+  </div>
+</section>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <div class="step p-8 md:p-10 reveal" style="min-height: 260px;">
-          <div class="step-num mb-10">D.01</div>
-          <h3 class="h-med mb-4">Overview</h3>
-          <p class="text-[14px] leading-[1.65]" style="color: var(--text-dim);">
-            The verdict up front: the Ecosystem Condition Index, its trend against baseline, and a live map of where the evidence is coming from.
-          </p>
-        </div>
-        <div class="step p-8 md:p-10 reveal reveal-d1" style="min-height: 260px;">
-          <div class="step-num mb-10">D.02</div>
-          <h3 class="h-med mb-4">Evidence</h3>
-          <p class="text-[14px] leading-[1.65]" style="color: var(--text-dim);">
-            The species and habitat sub-index breakdown — richness, diversity, conservation weighting, and satellite-derived structure — fused, with every number's confidence tier shown alongside it.
-          </p>
-        </div>
-        <div class="step p-8 md:p-10 reveal reveal-d2" style="min-height: 260px;">
-          <div class="step-num mb-10">D.03</div>
-          <h3 class="h-med mb-4">Proof</h3>
-          <p class="text-[14px] leading-[1.65]" style="color: var(--text-dim);">
-            The signed ledger itself, hash-chained and independently verifiable — including the live "try to forge it" demo from the SIGN step above, on real records.
-          </p>
-        </div>
-        <div class="step p-8 md:p-10 reveal reveal-d3" style="min-height: 260px;">
-          <div class="step-num mb-10">D.04</div>
-          <h3 class="h-med mb-4">Network</h3>
-          <p class="text-[14px] leading-[1.65]" style="color: var(--text-dim);">
-            The multi-device fleet view — every node's status, health, and contribution to the site-level picture, in one place.
-          </p>
-        </div>
-      </div>
-
-      <div class="mt-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6 reveal reveal-d3">
-        <p class="text-[14px] leading-[1.6] max-w-[520px]" style="color: var(--text-dim);">
-          …plus a one-click export into ESRS/TNFD-structured disclosure, ready to hand to an auditor.
-        </p>
-        <a href="#contact" class="btn btn-primary shrink-0">
-          Request a live walkthrough
-          <svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M1 6h10M7 2l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
+<!-- ============ 9 · FAQ ============ -->
+<section class="section tline" id="faq">
+  <div class="wrap-narrow reveal">
+    <span class="eyebrow sec-eyebrow">§ 08 — Field notes</span>
+    <h2>Questions we get,<br><em>answered plainly.</em></h2>
+    <div class="faq mt-lg">
+      <details open>
+        <summary><span class="q"><span class="qn">Q.01</span><span class="qt">What is TerraProof, in one sentence?</span></span><span class="plus">+</span></summary>
+        <div class="a">A working edge-AI pipeline that detects and classifies wildlife, cryptographically signs every observation, and scores ecosystem condition — with a physical field node as the next step.</div>
+      </details>
+      <details>
+        <summary><span class="q"><span class="qn">Q.02</span><span class="qt">Is this just a smarter camera trap?</span></span><span class="plus">+</span></summary>
+        <div class="a">No. Camera traps record. TerraProof interprets, signs, and vouches. The output is a structured, tamper-evident event — not a media file you have to defend after the fact.</div>
+      </details>
+      <details>
+        <summary><span class="q"><span class="qn">Q.03</span><span class="qt">Who is it for?</span></span><span class="plus">+</span></summary>
+        <div class="a">Conservation projects, restoration operators, biodiversity monitoring teams, researchers, and corporate sustainability teams who need their field evidence to survive scrutiny from regulators, auditors, or registries.</div>
+      </details>
+      <details>
+        <summary><span class="q"><span class="qn">Q.04</span><span class="qt">Is the hardware available yet?</span></span><span class="plus">+</span></summary>
+        <div class="a">Not yet — the physical field node is Phase D on our roadmap, and we're building toward it deliberately rather than promising a ship date before it's earned. What's available today is the software: the detection and scoring pipeline, and the <a href="#dashboard">full dashboard</a>, which you can request a walkthrough of now.</div>
+      </details>
+      <details>
+        <summary><span class="q"><span class="qn">Q.05</span><span class="qt">Does this replace eDNA, acoustics, or satellite?</span></span><span class="plus">+</span></summary>
+        <div class="a">No — and in fact we fuse with one of them directly: real Sentinel-2 satellite NDVI feeds our Structure sub-index alongside the fauna signal. Think of TerraProof as the trust layer and fusion engine across these methods, not a replacement for any one. (NDVI is a greenness proxy, not biodiversity itself — we treat it as one signal, never the whole picture.)</div>
+      </details>
+      <details>
+        <summary><span class="q"><span class="qn">Q.06</span><span class="qt">Is the Ecosystem Condition Index certified or independently validated?</span></span><span class="plus">+</span></summary>
+        <div class="a">Not yet, and we say so on every score. The reference conditions and index weights are provisional, self-baseline estimates pending review by a qualified ecologist. Every score ships with a confidence tier and its full component breakdown — never a bare number. Cryptographic proof tells you the data wasn't altered; it doesn't by itself tell you the ecology is sound, and we never blur that line.</div>
+      </details>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ─── USE CASES ───────────────────────────────────────── -->
-  <section id="cases" class="py-24 md:py-36 sec-dark">
-    <div class="max-w-[1240px] mx-auto px-6 md:px-10">
-      <div class="reveal">
-        <div class="eyebrow mb-6">§ 06 — Use cases</div>
-        <h2 class="display h-super max-w-[980px] mb-20">
-          Where a <em>stronger record</em><br>changes the outcome.
-        </h2>
+<!-- ============ 10 · PILOT INTAKE ============ -->
+<section class="section tline pilot" id="pilot">
+  <canvas id="gridfield" aria-hidden="true"></canvas>
+  <div class="pilot-inner reveal">
+    <span class="eyebrow">§ 09 — Pilot intake</span>
+    <p>We're onboarding a small cohort of sites for our first field pilots. If you manage land under ESS6, IFC PS6, or restoration-compliance obligations and want continuous monitoring instead of annual snapshots, we want to talk.</p>
+
+    <!-- Pilot request — posts to Formspree -->
+    <form class="pf" id="pilotform" action="https://formspree.io/f/mqevwnyy" method="POST" novalidate>
+      <input type="hidden" name="intent" value="pilot">
+      <input type="hidden" name="_subject" value="TerraProof — pilot access request">
+      <div class="fieldrow" id="fr-email">
+        <input type="email" name="email" id="f-email" autocomplete="email">
+        <label for="f-email">Work email</label>
+        <span class="err">Enter a work email address.</span>
       </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <div class="step p-8 md:p-10 reveal">
-          <div class="step-num mb-10">CASE · 01</div>
-          <h3 class="h-med mb-4">Protected species</h3>
-          <p class="text-[14px] leading-[1.65] mb-8" style="color: var(--text-dim);">
-            Presence claims you can actually present — to regulators, to developers, to anyone whose decision turns on whether the animal was really there.
-          </p>
-          <div class="eyebrow mb-3">Signals</div>
-          <ul class="space-y-1.5 text-[13px]" style="color: var(--text-dim);">
-            <li>— Species ID with confidence</li>
-            <li>— Signed device, time, place</li>
-            <li>— Audit-ready record per event</li>
-          </ul>
-        </div>
-        <div class="step p-8 md:p-10 reveal reveal-d1">
-          <div class="step-num mb-10">CASE · 02</div>
-          <h3 class="h-med mb-4">Restoration verification</h3>
-          <p class="text-[14px] leading-[1.65] mb-8" style="color: var(--text-dim);">
-            Moving past “we planted X.” TerraProof turns the return of fauna into a defensible, dated, location-bound record.
-          </p>
-          <div class="eyebrow mb-3">Signals</div>
-          <ul class="space-y-1.5 text-[13px]" style="color: var(--text-dim);">
-            <li>— Return-of-species events</li>
-            <li>— Baseline vs. post-intervention</li>
-            <li>— Evidence stream into MRV</li>
-          </ul>
-        </div>
-        <div class="step p-8 md:p-10 reveal reveal-d2">
-          <div class="step-num mb-10">CASE · 03</div>
-          <h3 class="h-med mb-4">Nature finance</h3>
-          <p class="text-[14px] leading-[1.65] mb-8" style="color: var(--text-dim);">
-            Biodiversity credits will only be worth what their field evidence can carry. TerraProof is built for the day that bar is raised.
-          </p>
-          <div class="eyebrow mb-3">Signals</div>
-          <ul class="space-y-1.5 text-[13px]" style="color: var(--text-dim);">
-            <li>— Registry-grade observations</li>
-            <li>— Per-event provenance chain</li>
-            <li>— Verifiable independent of operator</li>
-          </ul>
-        </div>
+      <div class="fieldrow" id="fr-org">
+        <input type="text" name="organization" id="f-org" autocomplete="organization">
+        <label for="f-org">Organization</label>
+        <span class="err">Enter your organization.</span>
       </div>
-    </div>
-  </section>
-
-  <!-- ─── FAQ ─────────────────────────────────────────────── -->
-  <section id="faq" class="py-24 md:py-36 sec-mid">
-    <div class="max-w-[1100px] mx-auto px-6 md:px-10">
-      <div class="reveal">
-        <div class="eyebrow mb-6">§ 07 — Field notes</div>
-        <h2 class="display h-super mb-16">
-          Questions we get,<br><em>answered plainly.</em>
-        </h2>
+      <div class="fieldrow" id="fr-ha">
+        <input type="text" inputmode="numeric" name="hectares" id="f-ha">
+        <label for="f-ha">Managed hectares</label>
+        <span class="err">Enter the total hectares under management.</span>
       </div>
-
-      <div class="reveal reveal-d1">
-        <details class="faq-row py-6 border-t" style="border-color: var(--line);" open>
-          <summary class="flex items-start justify-between gap-6 px-2">
-            <div class="flex items-baseline gap-6">
-              <span class="mono text-[11px] tracking-[0.16em] pt-1.5" style="color: var(--text-mute);">Q.01</span>
-              <span class="h-med" style="font-family:'Geist'; font-weight: 400; letter-spacing: -0.02em;">What is TerraProof, in one sentence?</span>
-            </div>
-            <span class="faq-plus text-[32px] font-light leading-none mt-0.5" style="color: var(--text-mute);">+</span>
-          </summary>
-          <div class="pl-[calc(48px+1.5rem)] pr-10 pt-4 text-[15px] leading-[1.7] max-w-[720px]" style="color: var(--text-dim);">
-            A working edge AI pipeline that detects and classifies wildlife, cryptographically signs every observation, and scores ecosystem condition — with a physical field node as the next step.
-          </div>
-        </details>
-
-        <details class="faq-row py-6 border-t" style="border-color: var(--line);">
-          <summary class="flex items-start justify-between gap-6 px-2">
-            <div class="flex items-baseline gap-6">
-              <span class="mono text-[11px] tracking-[0.16em] pt-1.5" style="color: var(--text-mute);">Q.02</span>
-              <span class="h-med" style="font-family:'Geist'; font-weight: 400; letter-spacing: -0.02em;">Is this just a smarter camera trap?</span>
-            </div>
-            <span class="faq-plus text-[32px] font-light leading-none mt-0.5" style="color: var(--text-mute);">+</span>
-          </summary>
-          <div class="pl-[calc(48px+1.5rem)] pr-10 pt-4 text-[15px] leading-[1.7] max-w-[720px]" style="color: var(--text-dim);">
-            No. Camera traps record. TerraProof interprets, signs, and vouches. The output is a structured, tamper-evident event — not a media file you have to defend after the fact.
-          </div>
-        </details>
-
-        <details class="faq-row py-6 border-t" style="border-color: var(--line);">
-          <summary class="flex items-start justify-between gap-6 px-2">
-            <div class="flex items-baseline gap-6">
-              <span class="mono text-[11px] tracking-[0.16em] pt-1.5" style="color: var(--text-mute);">Q.03</span>
-              <span class="h-med" style="font-family:'Geist'; font-weight: 400; letter-spacing: -0.02em;">How does it differ from ordinary monitoring tools?</span>
-            </div>
-            <span class="faq-plus text-[32px] font-light leading-none mt-0.5" style="color: var(--text-mute);">+</span>
-          </summary>
-          <div class="pl-[calc(48px+1.5rem)] pr-10 pt-4 text-[15px] leading-[1.7] max-w-[720px]" style="color: var(--text-dim);">
-            Most tools optimise for volume of data. TerraProof optimises for integrity per event — structure, traceability, and cryptographic proof baked in at the sensor.
-          </div>
-        </details>
-
-        <details class="faq-row py-6 border-t" style="border-color: var(--line);">
-          <summary class="flex items-start justify-between gap-6 px-2">
-            <div class="flex items-baseline gap-6">
-              <span class="mono text-[11px] tracking-[0.16em] pt-1.5" style="color: var(--text-mute);">Q.04</span>
-              <span class="h-med" style="font-family:'Geist'; font-weight: 400; letter-spacing: -0.02em;">Who is it for?</span>
-            </div>
-            <span class="faq-plus text-[32px] font-light leading-none mt-0.5" style="color: var(--text-mute);">+</span>
-          </summary>
-          <div class="pl-[calc(48px+1.5rem)] pr-10 pt-4 text-[15px] leading-[1.7] max-w-[720px]" style="color: var(--text-dim);">
-            Conservation projects, restoration operators, biodiversity monitoring teams, researchers, and corporate sustainability teams who need their field evidence to survive scrutiny from regulators, auditors, or registries.
-          </div>
-        </details>
-
-        <details class="faq-row py-6 border-t" style="border-color: var(--line);">
-          <summary class="flex items-start justify-between gap-6 px-2">
-            <div class="flex items-baseline gap-6">
-              <span class="mono text-[11px] tracking-[0.16em] pt-1.5" style="color: var(--text-mute);">Q.05</span>
-              <span class="h-med" style="font-family:'Geist'; font-weight: 400; letter-spacing: -0.02em;">Is the hardware available yet?</span>
-            </div>
-            <span class="faq-plus text-[32px] font-light leading-none mt-0.5" style="color: var(--text-mute);">+</span>
-          </summary>
-          <div class="pl-[calc(48px+1.5rem)] pr-10 pt-4 text-[15px] leading-[1.7] max-w-[720px]" style="color: var(--text-dim);">
-            Not yet — the physical field node is Phase D on our roadmap (see above), and we're building toward it deliberately rather than promising a ship date before it's earned. What is available today is the software: the detection and scoring pipeline, and the <a href="#dashboard" class="underline-anim" style="color: var(--accent);">full dashboard</a>, which you can request a walkthrough of now.
-          </div>
-        </details>
-
-        <details class="faq-row py-6 border-t" style="border-color: var(--line);">
-          <summary class="flex items-start justify-between gap-6 px-2">
-            <div class="flex items-baseline gap-6">
-              <span class="mono text-[11px] tracking-[0.16em] pt-1.5" style="color: var(--text-mute);">Q.06</span>
-              <span class="h-med" style="font-family:'Geist'; font-weight: 400; letter-spacing: -0.02em;">Does this replace eDNA, acoustics, or satellite?</span>
-            </div>
-            <span class="faq-plus text-[32px] font-light leading-none mt-0.5" style="color: var(--text-mute);">+</span>
-          </summary>
-          <div class="pl-[calc(48px+1.5rem)] pr-10 pt-4 text-[15px] leading-[1.7] max-w-[720px]" style="color: var(--text-dim);">
-            No — and in fact we fuse with one of them directly: real Sentinel-2 satellite NDVI (vegetation greenness) feeds our own Structure sub-index alongside the fauna signal from the sensor. Think of TerraProof as the trust layer and fusion engine sitting across these methods, not a replacement for any one of them. (NDVI is a greenness proxy, not biodiversity itself — we treat it as one signal, never the whole picture.)
-          </div>
-        </details>
-
-        <details class="faq-row py-6 border-t border-b" style="border-color: var(--line);">
-          <summary class="flex items-start justify-between gap-6 px-2">
-            <div class="flex items-baseline gap-6">
-              <span class="mono text-[11px] tracking-[0.16em] pt-1.5" style="color: var(--text-mute);">Q.07</span>
-              <span class="h-med" style="font-family:'Geist'; font-weight: 400; letter-spacing: -0.02em;">Is the Ecosystem Condition Index certified or independently validated?</span>
-            </div>
-            <span class="faq-plus text-[32px] font-light leading-none mt-0.5" style="color: var(--text-mute);">+</span>
-          </summary>
-          <div class="pl-[calc(48px+1.5rem)] pr-10 pt-4 text-[15px] leading-[1.7] max-w-[720px]" style="color: var(--text-dim);">
-            Not yet, and we say so on every score. The reference conditions and index weights are provisional, self-baseline estimates pending review by a qualified ecologist. Every score ships with a confidence tier and its full component breakdown — never a bare number. Cryptographic proof tells you the data wasn't altered; it doesn't by itself tell you the ecology is sound, and we never blur that line.
-          </div>
-        </details>
+      <div class="fieldrow float" id="fr-biome">
+        <select name="use_case" id="f-biome">
+          <option value="" selected></option>
+          <option>Conservation</option>
+          <option>Restoration verification</option>
+          <option>Research</option>
+          <option>Nature finance / credits</option>
+          <option>Other</option>
+        </select>
+        <label for="f-biome">Primary use case</label>
       </div>
-    </div>
-  </section>
-
-  <!-- ─── CTA ─────────────────────────────────────────────── -->
-  <section id="contact" class="relative py-32 md:py-44 overflow-hidden">
-    <div class="absolute inset-0">
-      <div class="aurora" style="opacity: 0.6;"></div>
-      <div class="hero-grid"></div>
-    </div>
-    <div class="relative z-10 max-w-[1100px] mx-auto px-6 md:px-10 text-center">
-      <div class="eyebrow mb-8 reveal">§ 08 — Early partners</div>
-      <h2 class="display h-super reveal reveal-d1">
-        Put your site<br>on the <em>shortlist.</em>
-      </h2>
-      <p class="text-[17px] md:text-[19px] leading-[1.55] max-w-[620px] mx-auto mt-8 reveal reveal-d2" style="color: var(--text-dim);">
-        We’re looking for researchers, conservation operators, and restoration teams to prove this on. A small cohort; real sites; real evidence.
-      </p>
-      <div class="mt-12 flex items-center justify-center gap-3 reveal reveal-d3">
-        <a href="mailto:pilots@terraproof.io" class="btn btn-primary">
-          Request access
-          <svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M1 6h10M7 2l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <a href="mailto:hello@terraproof.io" class="btn btn-ghost">hello@terraproof.io</a>
+      <div class="submit-wrap" id="subwrap">
+        <button class="btn" type="submit">Request Pilot Access</button>
+        <svg preserveAspectRatio="none" viewBox="0 0 100 100"><rect x="0" y="0" width="100" height="100" pathLength="100"/></svg>
       </div>
-    </div>
-  </section>
+    </form>
+    <div class="success" id="success"><span class="tick">✓</span>Received. We reply within 48 hours.</div>
+  </div>
+</section>
 
-  <!-- ─── FOOTER ──────────────────────────────────────────── -->
-  <footer class="sec-dark border-t py-14" style="border-color: var(--line);">
-    <div class="max-w-[1240px] mx-auto px-6 md:px-10">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12">
-        <div class="md:col-span-5">
-          <div class="flex items-center gap-3 mb-4">
-            <svg width="34" height="38" viewBox="0 0 150 170" fill="none">
-              <path d="M75 6 L141 30 L141 82 C141 120 112 150 75 162 C38 150 9 120 9 82 L9 30 Z" fill="none" stroke="#f5f6f7" stroke-width="5"/>
-              <path d="M75 22 L127 40 L127 82 C127 112 105 136 75 146 C45 136 23 112 23 82 L23 40 Z" fill="#9ae6b4" fill-opacity="0.15" stroke="#9ae6b4" stroke-width="3"/>
-              <path d="M38 48 L112 48 L112 62 L84 62 L84 122 L66 122 L66 62 L38 62 Z" fill="#f5f6f7"/>
-              <circle cx="75" cy="134" r="6" fill="#9ae6b4"/>
-            </svg>
-            <span class="serif text-[24px]" style="letter-spacing:-0.02em; font-weight:600;">Terra<span style="color: var(--accent);">Proof</span></span>
-          </div>
-          <p class="text-[13px] leading-[1.65] max-w-[340px]" style="color: var(--text-dim);">
-            A trust layer for biodiversity evidence. In field validation · Spring 2026.
-          </p>
-        </div>
-        <div class="md:col-span-2">
-          <div class="eyebrow mb-4">Site</div>
-          <ul class="space-y-2.5 text-[13px]" style="color: var(--text-dim);">
-            <li><a href="#approach" class="underline-anim">Approach</a></li>
-            <li><a href="#how" class="underline-anim">Method</a></li>
-            <li><a href="#dashboard" class="underline-anim">Dashboard</a></li>
-            <li><a href="#device" class="underline-anim">Device</a></li>
-            <li><a href="#cases" class="underline-anim">Use cases</a></li>
-            <li><a href="#faq" class="underline-anim">FAQ</a></li>
-          </ul>
-        </div>
-        <div class="md:col-span-2">
-          <div class="eyebrow mb-4">Contact</div>
-          <ul class="space-y-2.5 text-[13px]" style="color: var(--text-dim);">
-            <li><a href="mailto:hello@terraproof.io" class="underline-anim">hello@terraproof.io</a></li>
-            <li><a href="mailto:pilots@terraproof.io" class="underline-anim">Pilot enquiries</a></li>
-          </ul>
-        </div>
-        <div class="md:col-span-3">
-          <div class="eyebrow mb-4">Field HQ</div>
-          <p class="text-[13px] leading-[1.65]" style="color: var(--text-dim);">
-            TerraProof Ltd.<br>
-            Cardiff · United Kingdom<br>
-            Operating 51.4812°N, 3.1791°W
-          </p>
-        </div>
-      </div>
-      <div class="pt-6 border-t flex flex-col md:flex-row md:items-center md:justify-between gap-3" style="border-color: var(--line);">
-        <div class="mono text-[11px]" style="color: var(--text-mute);">
-          © 2026 TerraProof Ltd.
-        </div>
-        <div class="mono text-[11px]" style="color: var(--text-mute);">
-          v 0.1 · Pilot build · TP-WEB-002
-        </div>
-      </div>
-    </div>
-  </footer>
+<footer>
+  <span>TERRA<span style="color:var(--green)">PROOF</span> · Verified biodiversity intelligence</span>
+  <span class="fl"><a href="mailto:hello@terraproof.earth">hello@terraproof.earth</a><a href="#pilot">Pilot enquiries</a><span>© 2026</span></span>
+</footer>
 
-  <script>
-    // ── Reveal on scroll ─────────────────────────────────
-    const io = new IntersectionObserver((entries) => {
-      for (const e of entries) {
-        if (e.isIntersecting) {
-          e.target.classList.add('in');
-          io.unobserve(e.target);
-        }
+<script>
+'use strict';
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const DPR = Math.min(devicePixelRatio || 1, 2);
+
+/* ================= simplex noise ================= */
+const Simplex = (() => {
+  const G = [[1,1],[-1,1],[1,-1],[-1,-1],[1,0],[-1,0],[0,1],[0,-1]];
+  const p = new Uint8Array(512);
+  const perm = new Uint8Array(256);
+  for (let i = 0; i < 256; i++) perm[i] = i;
+  let s = 1337;
+  const rnd = () => (s = (s * 16807) % 2147483647) / 2147483647;
+  for (let i = 255; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [perm[i], perm[j]] = [perm[j], perm[i]]; }
+  for (let i = 0; i < 512; i++) p[i] = perm[i & 255];
+  const F2 = 0.5 * (Math.sqrt(3) - 1), G2 = (3 - Math.sqrt(3)) / 6;
+  return function noise(xin, yin) {
+    let n0 = 0, n1 = 0, n2 = 0;
+    const st = (xin + yin) * F2;
+    const i = Math.floor(xin + st), j = Math.floor(yin + st);
+    const t = (i + j) * G2;
+    const x0 = xin - (i - t), y0 = yin - (j - t);
+    const i1 = x0 > y0 ? 1 : 0, j1 = x0 > y0 ? 0 : 1;
+    const x1 = x0 - i1 + G2, y1 = y0 - j1 + G2;
+    const x2 = x0 - 1 + 2 * G2, y2 = y0 - 1 + 2 * G2;
+    const ii = i & 255, jj = j & 255;
+    let t0 = 0.5 - x0 * x0 - y0 * y0;
+    if (t0 > 0) { t0 *= t0; const g = G[p[ii + p[jj]] & 7]; n0 = t0 * t0 * (g[0] * x0 + g[1] * y0); }
+    let t1 = 0.5 - x1 * x1 - y1 * y1;
+    if (t1 > 0) { t1 *= t1; const g = G[p[ii + i1 + p[jj + j1]] & 7]; n1 = t1 * t1 * (g[0] * x1 + g[1] * y1); }
+    let t2 = 0.5 - x2 * x2 - y2 * y2;
+    if (t2 > 0) { t2 *= t2; const g = G[p[ii + 1 + p[jj + 1]] & 7]; n2 = t2 * t2 * (g[0] * x2 + g[1] * y2); }
+    return 70 * (n0 + n1 + n2);
+  };
+})();
+
+/* ================= hero particle field ================= */
+(() => {
+  const cv = document.getElementById('field');
+  const gl = cv.getContext('webgl', { alpha: true, antialias: false });
+  if (!gl) { cv.style.display = 'none'; return; }
+  let W = 0, H = 0, N = 0;
+  let px, py, vx, vy, hx, hy, inf, spd, colors, upload;
+  let posBuf, colBuf, prog, uRes, uSize;
+  const PITCH = 26, ROW_H = PITCH * 0.866;
+  const FREQ = 0.0016, TSPEED = 0.045;
+  const RADIUS = 160, K = 120, C = 22;
+  const mouse = { x: -9999, y: -9999, active: false };
+  function homeFor(x, y) {
+    const row = Math.round(y / ROW_H);
+    const off = (row % 2 !== 0) ? PITCH / 2 : 0;
+    const col = Math.round((x - off) / PITCH);
+    return [col * PITCH + off, row * ROW_H];
+  }
+  function compile(type, src) { const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); return s; }
+  function setup() {
+    const vs = compile(gl.VERTEX_SHADER, `attribute vec2 a_pos; attribute vec4 a_col; uniform vec2 u_res; uniform float u_size; varying vec4 v_col; void main(){ vec2 clip = (a_pos / u_res) * 2.0 - 1.0; gl_Position = vec4(clip.x, -clip.y, 0.0, 1.0); gl_PointSize = u_size; v_col = a_col; }`);
+    const fs = compile(gl.FRAGMENT_SHADER, `precision mediump float; varying vec4 v_col; void main(){ vec2 d = gl_PointCoord - 0.5; if (dot(d,d) > 0.25) discard; gl_FragColor = vec4(v_col.rgb, v_col.a); }`);
+    prog = gl.createProgram(); gl.attachShader(prog, vs); gl.attachShader(prog, fs); gl.linkProgram(prog); gl.useProgram(prog);
+    uRes = gl.getUniformLocation(prog, 'u_res'); uSize = gl.getUniformLocation(prog, 'u_size');
+    posBuf = gl.createBuffer(); colBuf = gl.createBuffer();
+    gl.enable(gl.BLEND); gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+  }
+  function seed() {
+    const rect = cv.getBoundingClientRect();
+    W = rect.width; H = rect.height;
+    cv.width = W * DPR; cv.height = H * DPR;
+    gl.viewport(0, 0, cv.width, cv.height);
+    N = Math.min(4000, Math.floor(W * H / 550));
+    px = new Float32Array(N); py = new Float32Array(N);
+    vx = new Float32Array(N); vy = new Float32Array(N);
+    hx = new Float32Array(N); hy = new Float32Array(N);
+    inf = new Float32Array(N); spd = new Float32Array(N);
+    upload = new Float32Array(N * 2); colors = new Float32Array(N * 4);
+    for (let i = 0; i < N; i++) {
+      px[i] = Math.random() * W; py[i] = Math.random() * H;
+      spd[i] = (12 + Math.random() * 6) * (0.7 + Math.random() * 0.6);
+      const home = homeFor(px[i], py[i]); hx[i] = home[0]; hy[i] = home[1];
+      if (RM) { px[i] = home[0]; py[i] = home[1]; }
+      const green = Math.random() < 1 / 180;
+      const a = green ? 1.0 : 0.35 + Math.random() * 0.35;
+      if (green) { colors[i*4]=0.231; colors[i*4+1]=0.894; colors[i*4+2]=0.467; }
+      else { colors[i*4]=0.906; colors[i*4+1]=0.898; colors[i*4+2]=0.875; }
+      colors[i*4+3] = a;
+    }
+    gl.bindBuffer(gl.ARRAY_BUFFER, colBuf);
+    gl.bufferData(gl.ARRAY_BUFFER, colors, gl.STATIC_DRAW);
+    const aCol = gl.getAttribLocation(prog, 'a_col'); gl.enableVertexAttribArray(aCol); gl.vertexAttribPointer(aCol, 4, gl.FLOAT, false, 0, 0);
+    gl.bindBuffer(gl.ARRAY_BUFFER, posBuf);
+    gl.bufferData(gl.ARRAY_BUFFER, N * 8, gl.DYNAMIC_DRAW);
+    const aPos = gl.getAttribLocation(prog, 'a_pos'); gl.enableVertexAttribArray(aPos); gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+    gl.uniform2f(uRes, W, H); gl.uniform1f(uSize, 1.5 * DPR);
+  }
+  function drawFrame() {
+    for (let i = 0; i < N; i++) { upload[i*2] = px[i]; upload[i*2+1] = py[i]; }
+    gl.bindBuffer(gl.ARRAY_BUFFER, posBuf); gl.bufferSubData(gl.ARRAY_BUFFER, 0, upload);
+    gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT); gl.drawArrays(gl.POINTS, 0, N);
+  }
+  let T = 0, last = 0, running = false, visible = true, tabVisible = true;
+  function step(now) {
+    if (!running) return;
+    const dt = Math.min((now - last) / 1000, 0.05); last = now;
+    T += dt * TSPEED / FREQ;
+    const eps = 8;
+    for (let i = 0; i < N; i++) {
+      const dx = px[i] - mouse.x, dy = py[i] - mouse.y;
+      const d = Math.sqrt(dx * dx + dy * dy);
+      let target = 0;
+      if (mouse.active && d < RADIUS) { const e0 = RADIUS, e1 = RADIUS * 0.35; let t = (d - e0) / (e1 - e0); t = Math.max(0, Math.min(1, t)); target = t * t * (3 - 2 * t); }
+      if (target > inf[i]) { if (inf[i] < 0.01) { const h = homeFor(px[i], py[i]); hx[i] = h[0]; hy[i] = h[1]; } inf[i] = target; }
+      else { inf[i] += (target - inf[i]) * Math.min(1, dt / 0.9); }
+      const nx = (px[i] + T) * FREQ, ny = (py[i] + T * 0.6) * FREQ;
+      const n0 = Simplex(nx, ny);
+      const dnx = (Simplex(nx + eps * FREQ, ny) - n0) / eps;
+      const dny = (Simplex(nx, ny + eps * FREQ) - n0) / eps;
+      let tvx = dny, tvy = -dnx;
+      const m = Math.sqrt(tvx * tvx + tvy * tvy) || 1;
+      tvx = tvx / m * spd[i]; tvy = tvy / m * spd[i];
+      const f = inf[i];
+      if (f > 0.001) { vx[i] += f * (K * (hx[i] - px[i]) - C * vx[i]) * dt; vy[i] += f * (K * (hy[i] - py[i]) - C * vy[i]) * dt; }
+      const r = (1 - f) * Math.min(1, dt * 2.5);
+      vx[i] += (tvx - vx[i]) * r; vy[i] += (tvy - vy[i]) * r;
+      px[i] += vx[i] * dt; py[i] += vy[i] * dt;
+      if (px[i] < -20) px[i] += W + 40; else if (px[i] > W + 20) px[i] -= W + 40;
+      if (py[i] < -20) py[i] += H + 40; else if (py[i] > H + 20) py[i] -= H + 40;
+    }
+    drawFrame(); requestAnimationFrame(step);
+  }
+  function start() { if (running || RM) return; running = true; last = performance.now(); requestAnimationFrame(step); }
+  function stop() { running = false; }
+  function sync() { (visible && tabVisible) ? start() : stop(); }
+  setup(); seed();
+  if (RM) { drawFrame(); }
+  else {
+    new IntersectionObserver(es => { visible = es[0].isIntersecting; sync(); }).observe(cv);
+    document.addEventListener('visibilitychange', () => { tabVisible = !document.hidden; sync(); });
+    sync();
+  }
+  addEventListener('resize', () => { seed(); if (RM) drawFrame(); });
+  const hero = document.querySelector('.hero');
+  hero.addEventListener('pointermove', e => { const r = cv.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; mouse.active = true; });
+  hero.addEventListener('pointerleave', () => { mouse.active = false; });
+})();
+
+/* ================= pilot grid field ================= */
+(() => {
+  const cv = document.getElementById('gridfield');
+  const ctx = cv.getContext('2d');
+  let pts = [], W, H, running = false, visible = false;
+  function seed() {
+    const r = cv.parentElement.getBoundingClientRect();
+    W = r.width; H = r.height;
+    cv.width = W * DPR; cv.height = H * DPR;
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    pts = [];
+    const P = 52, RH = P * 0.866;
+    for (let row = 0; row * RH < H; row++) {
+      const off = row % 2 ? P / 2 : 0;
+      for (let col = 0; col * P + off < W; col++) {
+        if (Math.random() < 0.55) pts.push({ x: col * P + off, y: row * RH, ph: Math.random() * Math.PI * 2, g: Math.random() < 1 / 120 });
       }
-    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    }
+  }
+  function draw(t) {
+    ctx.clearRect(0, 0, W, H);
+    for (const p of pts) {
+      const a = RM ? 0.22 : 0.12 + 0.14 * (0.5 + 0.5 * Math.sin(t / 1400 + p.ph));
+      ctx.fillStyle = p.g ? `rgba(59,228,119,${a + 0.15})` : `rgba(231,229,223,${a})`;
+      ctx.fillRect(p.x, p.y, 1.5, 1.5);
+    }
+  }
+  function loop(t) { if (!running) return; draw(t); requestAnimationFrame(loop); }
+  seed();
+  if (RM) draw(0);
+  else { new IntersectionObserver(es => { visible = es[0].isIntersecting; if (visible && !running) { running = true; requestAnimationFrame(loop); } if (!visible) running = false; }).observe(cv); }
+  addEventListener('resize', () => { seed(); if (RM) draw(0); });
+})();
 
-    // ── Stat reveal: fill in [data-count] values ─────────
-    document.querySelectorAll('[data-count]').forEach(el => {
-      el.textContent = el.getAttribute('data-count');
+/* ================= feed canvas ================= */
+const Feed = (() => {
+  const cv = document.getElementById('feedcv');
+  const ctx = cv.getContext('2d');
+  let W, H, running = false, visible = false;
+  const grain = document.createElement('canvas'); const gctx = grain.getContext('2d');
+  grain.width = 160; grain.height = 100; let lastGrain = 0;
+  const scene = document.createElement('canvas'); const sctx = scene.getContext('2d');
+  function paintScene() {
+    scene.width = W; scene.height = H;
+    const g = sctx.createLinearGradient(0, 0, 0, H);
+    g.addColorStop(0, '#0B0F0C'); g.addColorStop(0.6, '#0D120E'); g.addColorStop(1, '#080B09');
+    sctx.fillStyle = g; sctx.fillRect(0, 0, W, H);
+    sctx.fillStyle = 'rgba(231,229,223,0.03)'; sctx.fillRect(0, H * 0.72, W, H * 0.28);
+    let s = 42; const rnd = () => (s = (s * 16807) % 2147483647) / 2147483647;
+    for (let i = 0; i < 14; i++) {
+      const x = rnd() * W, w0 = 4 + rnd() * 14, h0 = H * (0.5 + rnd() * 0.5);
+      sctx.fillStyle = `rgba(4,6,5,${0.5 + rnd() * 0.4})`;
+      sctx.beginPath(); sctx.moveTo(x - w0 / 2, H);
+      sctx.quadraticCurveTo(x - w0 * 0.2 + (rnd() - 0.5) * 30, H - h0 * 0.6, x + (rnd() - 0.5) * 20, H - h0);
+      sctx.quadraticCurveTo(x + w0 * 0.2, H - h0 * 0.5, x + w0 / 2, H); sctx.fill();
+    }
+  }
+  function refreshGrain() {
+    const img = gctx.createImageData(grain.width, grain.height);
+    for (let i = 0; i < img.data.length; i += 4) { const v = Math.random() * 255; img.data[i] = img.data[i+1] = img.data[i+2] = v; img.data[i+3] = 255; }
+    gctx.putImageData(img, 0, 0);
+  }
+  function seed() {
+    const r = cv.getBoundingClientRect(); W = r.width; H = r.height;
+    cv.width = W * DPR; cv.height = H * DPR; ctx.setTransform(DPR, 0, 0, DPR, 0, 0); paintScene();
+  }
+  let fog = 0;
+  function draw(t) {
+    ctx.clearRect(0, 0, W, H); ctx.drawImage(scene, 0, 0, W, H);
+    fog = t / 30000; const fx = W * (0.5 + 0.4 * Math.sin(fog));
+    const fg = ctx.createRadialGradient(fx, H * 0.5, 0, fx, H * 0.5, W * 0.6);
+    fg.addColorStop(0, 'rgba(231,229,223,0.035)'); fg.addColorStop(1, 'rgba(231,229,223,0)');
+    ctx.fillStyle = fg; ctx.fillRect(0, 0, W, H);
+    if (t - lastGrain > 90) { refreshGrain(); lastGrain = t; }
+    ctx.globalAlpha = 0.07; ctx.drawImage(grain, 0, 0, W, H); ctx.globalAlpha = 1;
+  }
+  function loop(t) { if (!running) return; draw(t); requestAnimationFrame(loop); }
+  seed(); refreshGrain();
+  if (RM) draw(0);
+  else {
+    new IntersectionObserver(es => { visible = es[0].isIntersecting; if (visible && !running) { running = true; requestAnimationFrame(loop); } if (!visible) running = false; }).observe(cv);
+    document.addEventListener('visibilitychange', () => { if (document.hidden) running = false; else if (visible && !running) { running = true; requestAnimationFrame(loop); } });
+  }
+  addEventListener('resize', () => { seed(); if (RM) draw(0); });
+  return { dims: () => ({ W, H }) };
+})();
+
+/* ================= spectrogram ================= */
+(() => {
+  const cv = document.getElementById('speccv'); const ctx = cv.getContext('2d');
+  let W, H, running = false, visible = false, acc = 0, last = 0, X = 0;
+  const chirps = [];
+  function seed() { const r = cv.getBoundingClientRect(); W = Math.max(1, Math.round(r.width)); H = Math.max(1, Math.round(r.height)); cv.width = W; cv.height = H; ctx.fillStyle = '#080B09'; ctx.fillRect(0, 0, W, H); }
+  function column() {
+    ctx.drawImage(cv, -1, 0); ctx.fillStyle = '#080B09'; ctx.fillRect(W - 1, 0, 1, H); X += 1;
+    for (let y = 0; y < H; y += 2) {
+      const band = Simplex(X * 0.03, y * 0.06) * 0.5 + 0.5;
+      const base = Simplex(X * 0.008 + 50, y * 0.02) * 0.5 + 0.5;
+      let v = Math.max(0, band * base - 0.28) * 0.9;
+      v += Math.max(0, (1 - y / H) - 0.72) * 0.5;
+      for (const c of chirps) { const dx = X - c.x0; if (dx >= 0 && dx < c.len) { const cy = c.y0 + c.slope * dx; const dyy = Math.abs(y - cy); if (dyy < 3) v = Math.min(1, v + (1 - dyy / 3) * 0.9); } }
+      if (v > 0.03) { const green = v > 0.55; ctx.fillStyle = green ? `rgba(59,228,119,${Math.min(1, v)})` : `rgba(231,229,223,${v * 0.7})`; ctx.fillRect(W - 1, y, 1, 2); }
+    }
+    while (chirps.length && chirps[0].x0 + chirps[0].len < X - 10) chirps.shift();
+  }
+  function loop(t) { if (!running) return; const dt = Math.min(t - last, 100); last = t; acc += dt * 24 / 1000; while (acc >= 1) { column(); acc -= 1; } requestAnimationFrame(loop); }
+  seed();
+  if (RM) { for (let i = 0; i < W; i++) column(); }
+  else { new IntersectionObserver(es => { visible = es[0].isIntersecting; if (visible && !running) { running = true; last = performance.now(); requestAnimationFrame(loop); } if (!visible) running = false; }).observe(cv); }
+  addEventListener('resize', seed);
+  window.__chirp = () => { const n = 2 + Math.floor(Math.random() * 3); for (let i = 0; i < n; i++) { chirps.push({ x0: X + 2 + i * 6, y0: H * (0.25 + Math.random() * 0.35), slope: (Math.random() - 0.5) * 1.6, len: 8 + Math.random() * 10 }); } };
+})();
+
+/* ================= detection controller ================= */
+(() => {
+  const SPECIES = [
+    { n: 'Panthera onca',       c: [96.8, 99.1], mode: 'optical'  },
+    { n: 'Leopardus pardalis',  c: [93.2, 97.4], mode: 'optical'  },
+    { n: 'Tapirus terrestris',  c: [94.6, 98.2], mode: 'optical'  },
+    { n: 'Dasyprocta leporina', c: [90.1, 95.0], mode: 'optical'  },
+    { n: 'Ramphastos toco',     c: [92.4, 97.0], mode: 'acoustic' },
+    { n: 'Alouatta seniculus',  c: [91.7, 96.3], mode: 'acoustic' },
+    { n: 'Penelope jacquacu',   c: [89.9, 94.6], mode: 'acoustic' }
+  ];
+  const boxlayer = document.getElementById('boxlayer');
+  const ledger = document.getElementById('ledger');
+  const sweep = document.getElementById('sweep');
+  const uptimeEl = document.getElementById('uptime');
+  const clockEl = document.getElementById('clock');
+  const t0 = Date.now();
+  const pad = n => String(n).padStart(2, '0');
+  setInterval(() => {
+    const s = Math.floor((Date.now() - t0) / 1000);
+    uptimeEl.textContent = `${pad(Math.floor(s/3600))}:${pad(Math.floor(s/60)%60)}:${pad(s%60)}`;
+    const d = new Date();
+    clockEl.textContent = `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())} UTC${d.getTimezoneOffset()<=0?'+':'−'}${pad(Math.abs(d.getTimezoneOffset())/60|0)}`;
+  }, 1000);
+  const hex = n => Array.from({length:n}, () => '0123456789ABCDEF'[Math.random()*16|0]).join('');
+  function countUp(el, target) {
+    if (RM) { el.textContent = target.toFixed(1) + '%'; return; }
+    const start = performance.now(), dur = 650;
+    (function tick(t) { const p = Math.min(1, (t - start) / dur); const e = 1 - Math.pow(1 - p, 3); el.textContent = (target * e).toFixed(1) + '%'; if (p < 1) requestAnimationFrame(tick); })(performance.now());
+  }
+  function drawBox(sp, conf) {
+    const { W, H } = Feed.dims(); if (!W) return;
+    const bw = 70 + Math.random() * 90, bh = 50 + Math.random() * 60;
+    const bx = 30 + Math.random() * (W - bw - 60);
+    const by = H * 0.35 + Math.random() * (H * 0.45 - bh);
+    const el = document.createElement('div'); el.className = 'bbox';
+    el.style.cssText = `left:${bx}px;top:${by}px;width:${bw}px;height:${bh}px`;
+    const L = 26; const flip = (bx + bw + 190) > W;
+    const leader = flip ? `<line class="leader" x1="0" y1="0" x2="${-L}" y2="${-L}" stroke-dasharray="${L * 1.5}" stroke-dashoffset="${L * 1.5}"/>` : `<line class="leader" x1="${bw}" y1="0" x2="${bw + L}" y2="${-L}" stroke-dasharray="${L * 1.5}" stroke-dashoffset="${L * 1.5}"/>`;
+    const labelPos = flip ? `right:${bw + L + 4}px;top:${-L - 12}px` : `left:${bw + L + 4}px;top:${-L - 12}px`;
+    el.innerHTML = `<svg width="${bw}" height="${bh}"><line x1="0" y1="0" x2="${bw}" y2="0" stroke-dasharray="${bw}" stroke-dashoffset="${bw}"/><line x1="${bw}" y1="0" x2="${bw}" y2="${bh}" stroke-dasharray="${bh}" stroke-dashoffset="${bh}"/><line x1="${bw}" y1="${bh}" x2="0" y2="${bh}" stroke-dasharray="${bw}" stroke-dashoffset="${bw}"/><line x1="0" y1="${bh}" x2="0" y2="0" stroke-dasharray="${bh}" stroke-dashoffset="${bh}"/>${leader}</svg><div class="bbox-label" style="${labelPos}"><span class="sp">${sp}</span> · <span class="cf tnum">0.0%</span></div>`;
+    boxlayer.appendChild(el);
+    const lines = el.querySelectorAll('svg line');
+    [0, 1, 2, 3].forEach((li, i) => setTimeout(() => { lines[li].style.strokeDashoffset = 0; }, i * 90));
+    setTimeout(() => { lines[4].style.strokeDashoffset = 0; }, 380);
+    setTimeout(() => { el.querySelector('.bbox-label').style.opacity = 1; countUp(el.querySelector('.cf'), conf); }, 560);
+    setTimeout(() => el.classList.add('out'), 3600);
+    setTimeout(() => el.remove(), 4200);
+  }
+  function ledgerRow(sp, mode) {
+    const d = new Date(); const row = document.createElement('div'); row.className = 'ledger-row';
+    row.innerHTML = `<span class="t">${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}</span><span style="flex:1">${sp}</span><span class="mode">${mode.toUpperCase()}</span><span class="h">0x${hex(4)}…${hex(4)}</span>`;
+    ledger.prepend(row);
+    requestAnimationFrame(() => requestAnimationFrame(() => row.classList.add('in')));
+    while (ledger.children.length > 6) ledger.lastChild.remove();
+  }
+  function fire() {
+    const s = SPECIES[Math.random() * SPECIES.length | 0];
+    const conf = s.c[0] + Math.random() * (s.c[1] - s.c[0]);
+    if (s.mode === 'optical') drawBox(s.n, conf);
+    if (window.__chirp) window.__chirp();
+    sweep.classList.remove('on'); void sweep.offsetWidth; sweep.classList.add('on');
+    setTimeout(() => ledgerRow(s.n, s.mode), s.mode === 'optical' ? 1100 : 400);
+    schedule();
+  }
+  function schedule() { setTimeout(fire, RM ? 9000 : 4000 + Math.random() * 5000); }
+  setTimeout(fire, 1400);
+})();
+
+/* ================= reveal on scroll ================= */
+(() => {
+  if (RM) { document.querySelectorAll('.reveal').forEach(el => el.classList.add('in')); return; }
+  const io = new IntersectionObserver((es) => { for (const e of es) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } } }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+})();
+
+/* ================= Formspree AJAX (notify + pilot) ================= */
+(() => {
+  document.querySelectorAll('form.js-ajax').forEach(form => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('[type="submit"]');
+      const okMsg = form.getAttribute('data-ok') || 'Thanks — we’ll be in touch.';
+      const msgTarget = form.getAttribute('data-msg-target');
+      if (btn) { btn.dataset.label = btn.textContent.trim(); btn.disabled = true; btn.textContent = 'Sending…'; }
+      try {
+        const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
+        if (!res.ok) throw new Error('bad response');
+        if (msgTarget) { document.querySelector(msgTarget).textContent = okMsg; form.reset(); if (btn) { btn.disabled = false; btn.textContent = btn.dataset.label; } }
+      } catch (err) {
+        const failEl = document.querySelector(msgTarget || '#notifyMsg');
+        if (failEl) failEl.innerHTML = 'Couldn’t send — email <a href="mailto:hello@terraproof.earth" style="color:var(--green)">hello@terraproof.earth</a>.';
+        if (btn) { btn.disabled = false; btn.textContent = btn.dataset.label; }
+      }
     });
+  });
+})();
 
-    // ── Hero subtle parallax on aurora ───────────────────
-    const aurora = document.querySelector('.aurora');
-    window.addEventListener('scroll', () => {
-      if (!aurora) return;
-      const y = window.scrollY;
-      if (y < 900) aurora.style.transform = `translateY(${y * 0.1}px)`;
-    }, { passive: true });
-
-    // ── Nav state: add backdrop when scrolled ───────────
-    const nav = document.querySelector('.nav');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 20) nav.style.background = 'rgba(0,0,0,0.8)';
-      else nav.style.background = 'rgba(0,0,0,0.55)';
-    }, { passive: true });
-  </script>
+/* ================= pilot form (validate + trace + Formspree) ================= */
+(() => {
+  const form = document.getElementById('pilotform');
+  const wrap = document.getElementById('subwrap');
+  const success = document.getElementById('success');
+  const fields = [
+    { row: 'fr-email', input: 'f-email', check: v => /.+@.+\..+/.test(v) },
+    { row: 'fr-org',   input: 'f-org',   check: v => v.trim().length > 0 },
+    { row: 'fr-ha',    input: 'f-ha',    check: v => v.trim().length > 0 }
+  ];
+  document.querySelectorAll('.fieldrow input, .fieldrow select').forEach(el => {
+    const sync = () => el.closest('.fieldrow').classList.toggle('float', !!el.value || el.tagName === 'SELECT');
+    el.addEventListener('input', sync); el.addEventListener('blur', sync);
+  });
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    let ok = true;
+    for (const f of fields) {
+      const row = document.getElementById(f.row);
+      const valid = f.check(document.getElementById(f.input).value);
+      row.classList.toggle('invalid', !valid); if (!valid) ok = false;
+    }
+    if (!ok) return;
+    wrap.classList.add('tracing');
+    const finish = (html) => setTimeout(() => { form.classList.add('done'); success.innerHTML = html; success.classList.add('show'); }, RM ? 0 : 650);
+    try {
+      const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
+      if (!res.ok) throw new Error('bad response');
+      finish('<span class="tick">✓</span>Received. We reply within 48 hours.');
+    } catch (err) {
+      finish('<span class="tick">✓</span>Couldn’t send just now — email <a href="mailto:hello@terraproof.earth" style="color:var(--green)">hello@terraproof.earth</a> and we’ll pick it up.');
+    }
+  });
+})();
+</script>
 </body>
 </html>
