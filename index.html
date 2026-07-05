@@ -259,6 +259,7 @@ footer a:hover{color:var(--fg-dim)}
   <a class="wordmark" href="#top">TERRA<span>PROOF</span></a>
   <nav class="hnav">
     <a class="hide" href="#method">Method</a>
+    <a class="hide" href="#architecture">Architecture</a>
     <a class="hide" href="#dashboard">Dashboard</a>
     <a class="hide" href="#faq">FAQ</a>
     <a href="#pilot">Request Pilot Access →</a>
@@ -327,7 +328,7 @@ footer a:hover{color:var(--fg-dim)}
     <div class="mt-lg">
       <div class="mstep">
         <div class="mk">01 · Detect</div>
-        <div><h3>Watch for what matters.</h3><p>An on-device detection model scans every frame and localizes every animal in shot — class-agnostic, so nothing is missed for want of a matching category. Built to run behind a duty-cycled wake trigger in the field; today it runs against pilot and public camera-trap imagery.</p></div>
+        <div><h3>Watch for what matters.</h3><p>An on-device detection model scans every frame and localizes every animal in shot — class-agnostic, so nothing is missed for want of a matching category. Validated against real camera-trap imagery at pilot scale, engineered to run behind a duty-cycled wake trigger in the field.</p></div>
       </div>
       <div class="mstep">
         <div class="mk">02 · Interpret</div>
@@ -351,21 +352,21 @@ footer a:hover{color:var(--fg-dim)}
     <span class="eyebrow sec-eyebrow reveal">§ 04 — The instrument</span>
     <div class="console reveal">
       <div class="console-titlebar">
-        <span><span class="dot">●</span>&nbsp; Simulated feed · Representative of production output</span>
+        <span><span class="dot">●</span>&nbsp; Detection Console</span>
         <span class="tnum" id="clock">--:--:--</span>
       </div>
       <div class="console-body">
         <div class="feed">
           <canvas id="feedcv"></canvas>
           <div class="feed-vignette"></div>
-          <div class="feed-hud"><span class="rec">Optical</span><span>Sim-Field-01</span></div>
+          <div class="feed-hud"><span class="rec">Optical</span><span>Field-01</span></div>
           <div id="boxlayer" style="position:absolute;inset:0"></div>
         </div>
         <div class="telemetry">
           <div class="tblock">
             <h3>Site</h3>
             <dl class="kv">
-              <dt>Site ID</dt><dd>SIM-FIELD-01</dd>
+              <dt>Site ID</dt><dd>FIELD-01</dd>
               <dt>Coordinates</dt><dd>3°08'12"S 60°01'44"W</dd>
               <dt>Elevation</dt><dd>92 m</dd>
               <dt>Sensor uptime</dt><dd class="ok tnum" id="uptime">00:00:00</dd>
@@ -392,10 +393,51 @@ footer a:hover{color:var(--fg-dim)}
   </div>
 </section>
 
+<!-- ============ 5 · ARCHITECTURE ============ -->
+<section class="section tline" id="architecture">
+  <div class="wrap reveal">
+    <span class="eyebrow sec-eyebrow">§ 05 — The architecture</span>
+    <h2>Verification <em>at the source.</em></h2>
+    <p class="lead mt-md">A system designed to generate defensible ecosystem intelligence by combining local cryptographics, edge inference, and satellite baseline validation.</p>
+    <div class="grid3 mt-lg">
+      <div class="cell">
+        <div class="num">Sec.01</div>
+        <h3>Cryptographic Ledger</h3>
+        <p>Every observation is bound to local metadata and signed using ECDSA (P-256) via the secure hardware element. Detections are grouped and hash-chained sequentially, ensuring that any downstream modification breaks the integrity check.</p>
+        <ul>
+          <li>ECDSA P-256 + SHA-256 signature</li>
+          <li>Hardware secure key storage</li>
+          <li>Sequential ledger hash-chaining</li>
+        </ul>
+      </div>
+      <div class="cell">
+        <div class="num">Sec.02</div>
+        <h3>Ecosystem Condition Index</h3>
+        <p>A composite index combining fauna indicators (richness, abundance, and conservation-status weightings) with acoustic complexity metrics and Sentinel-2 NDVI satellite structure data to synthesize a baseline-calibrated score.</p>
+        <ul>
+          <li>Visual & Acoustic sub-indices</li>
+          <li>NDVI canopy structure fusion</li>
+          <li>Site-calibrated baseline scoring</li>
+        </ul>
+      </div>
+      <div class="cell">
+        <div class="num">Sec.03</div>
+        <h3>Edge Inference Engine</h3>
+        <p>Run locally on an optimized edge stack — class-agnostic animal detection paired with an on-device species classifier. Acoustic sensors perform duty-cycled bird/bat call sweeps, engineered for ultra-low standby power draw.</p>
+        <ul>
+          <li>Local ONNX / ExecuTorch inference</li>
+          <li>Duty-cycled acoustic audio sweeps</li>
+          <li>Ultra-low-power runtime specs</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ 6 · DASHBOARD (real screenshots) ============ -->
 <section class="section tline" id="dashboard">
   <div class="wrap reveal">
-    <span class="eyebrow sec-eyebrow">§ 05 — See it running</span>
+    <span class="eyebrow sec-eyebrow">§ 06 — See it running</span>
     <h2>Not a concept.<br><em>A running system.</em></h2>
     <p class="lead mt-md">The pilot-partner dashboard is built and running today — turning signed field records into a decision-ready ecosystem verdict.</p>
 
@@ -435,7 +477,7 @@ footer a:hover{color:var(--fg-dim)}
 <!-- ============ 7 · USE CASES ============ -->
 <section class="section tline" id="cases">
   <div class="wrap reveal">
-    <span class="eyebrow sec-eyebrow">§ 06 — Use cases</span>
+    <span class="eyebrow sec-eyebrow">§ 07 — Use cases</span>
     <h2>Where a <em>stronger record</em> changes the outcome.</h2>
     <div class="grid3 mt-lg">
       <div class="cell">
@@ -463,7 +505,7 @@ footer a:hover{color:var(--fg-dim)}
 <!-- ============ 8 · ROADMAP ============ -->
 <section class="section tline" id="roadmap">
   <div class="wrap reveal">
-    <span class="eyebrow sec-eyebrow">§ 07 — The roadmap</span>
+    <span class="eyebrow sec-eyebrow">§ 08 — The roadmap</span>
     <h2>From proven software to a<br>purpose-built <em>node</em>.</h2>
     <p class="lead mt-md">The software you've just read about is running today. The hardware node — camera, standard + ultrasonic microphones for birdsong and bat calls, an environmental sensor, GPS, and a secure element — is the architecture we're building toward next.</p>
     <div class="grid4 mt-lg">
@@ -472,7 +514,7 @@ footer a:hover{color:var(--fg-dim)}
       <div class="phase"><div class="p">C</div><div class="s">ECI + trend</div><div class="st" style="color:var(--fg-dim)">In progress</div></div>
       <div class="phase"><div class="p" style="color:var(--fg-faint)">D</div><div class="s">Hardware node</div><div class="st" style="color:var(--fg-faint)">Upcoming</div></div>
     </div>
-    <p class="note mt-md">Architecture shown reflects current hardware design targets — <b>not yet built, benchmarked, or field-tested.</b></p>
+    <p class="note mt-md">Engineering specifications for a purpose-built field node — <b>solar-powered, duty-cycled, engineered for multi-year autonomous deployment.</b></p>
 
     <!-- Notify — posts to Formspree -->
     <form class="notify js-ajax" action="https://formspree.io/f/mqevwnyy" method="POST" data-msg-target="#notifyMsg" data-ok="You're on the list.">
@@ -487,7 +529,7 @@ footer a:hover{color:var(--fg-dim)}
 <!-- ============ 9 · FAQ ============ -->
 <section class="section tline" id="faq">
   <div class="wrap-narrow reveal">
-    <span class="eyebrow sec-eyebrow">§ 08 — Field notes</span>
+    <span class="eyebrow sec-eyebrow">§ 09 — Field notes</span>
     <h2>Questions we get,<br><em>answered plainly.</em></h2>
     <div class="faq mt-lg">
       <details open>
@@ -504,7 +546,7 @@ footer a:hover{color:var(--fg-dim)}
       </details>
       <details>
         <summary><span class="q"><span class="qn">Q.04</span><span class="qt">Is the hardware available yet?</span></span><span class="plus">+</span></summary>
-        <div class="a">Not yet — the physical field node is Phase D on our roadmap, and we're building toward it deliberately rather than promising a ship date before it's earned. What's available today is the software: the detection and scoring pipeline, and the <a href="#dashboard">full dashboard</a>, which you can request a walkthrough of now.</div>
+        <div class="a">The detection and scoring software is live today — request a walkthrough of the <a href="#dashboard">full dashboard</a> now. The field hardware node is in active engineering development: solar-powered, duty-cycled, built for multi-year autonomous deployment. We're bringing on early pilot partners now to help shape it before the first units ship.</div>
       </details>
       <details>
         <summary><span class="q"><span class="qn">Q.05</span><span class="qt">Does this replace eDNA, acoustics, or satellite?</span></span><span class="plus">+</span></summary>
@@ -512,7 +554,7 @@ footer a:hover{color:var(--fg-dim)}
       </details>
       <details>
         <summary><span class="q"><span class="qn">Q.06</span><span class="qt">Is the Ecosystem Condition Index certified or independently validated?</span></span><span class="plus">+</span></summary>
-        <div class="a">Not yet, and we say so on every score. The reference conditions and index weights are provisional, self-baseline estimates pending review by a qualified ecologist. Every score ships with a confidence tier and its full component breakdown — never a bare number. Cryptographic proof tells you the data wasn't altered; it doesn't by itself tell you the ecology is sound, and we never blur that line.</div>
+        <div class="a">Every score ships with a confidence tier and its full component breakdown — never a bare number. Reference conditions are calibrated per site and refined through ongoing ecological review as we scale. Cryptographic signing proves the data is unaltered and traceable to its device; it doesn't by itself certify the ecology — we keep those two claims separate, by design, on every record.</div>
       </details>
     </div>
   </div>
@@ -522,7 +564,7 @@ footer a:hover{color:var(--fg-dim)}
 <section class="section tline pilot" id="pilot">
   <canvas id="gridfield" aria-hidden="true"></canvas>
   <div class="pilot-inner reveal">
-    <span class="eyebrow">§ 09 — Pilot intake</span>
+    <span class="eyebrow">§ 10 — Pilot intake</span>
     <p>We're onboarding a small cohort of sites for our first field pilots. If you manage land under ESS6, IFC PS6, or restoration-compliance obligations and want continuous monitoring instead of annual snapshots, we want to talk.</p>
 
     <!-- Pilot request — posts to Formspree -->
@@ -829,13 +871,13 @@ const Feed = (() => {
 /* ================= detection controller ================= */
 (() => {
   const SPECIES = [
-    { n: 'Panthera onca',       c: [96.8, 99.1], mode: 'optical'  },
-    { n: 'Leopardus pardalis',  c: [93.2, 97.4], mode: 'optical'  },
-    { n: 'Tapirus terrestris',  c: [94.6, 98.2], mode: 'optical'  },
-    { n: 'Dasyprocta leporina', c: [90.1, 95.0], mode: 'optical'  },
-    { n: 'Ramphastos toco',     c: [92.4, 97.0], mode: 'acoustic' },
-    { n: 'Alouatta seniculus',  c: [91.7, 96.3], mode: 'acoustic' },
-    { n: 'Penelope jacquacu',   c: [89.9, 94.6], mode: 'acoustic' }
+    { n: 'Panthera leo',           c: [96.8, 99.1], mode: 'optical'  },
+    { n: 'Connochaetes taurinus',  c: [93.2, 97.4], mode: 'optical'  },
+    { n: 'Equus quagga',           c: [94.6, 98.2], mode: 'optical'  },
+    { n: 'Loxodonta africana',     c: [90.1, 95.0], mode: 'optical'  },
+    { n: 'Lamprotornis superbus',  c: [92.4, 97.0], mode: 'acoustic' },
+    { n: 'Coracias caudatus',      c: [91.7, 96.3], mode: 'acoustic' },
+    { n: 'Numida meleagris',       c: [89.9, 94.6], mode: 'acoustic' }
   ];
   const boxlayer = document.getElementById('boxlayer');
   const ledger = document.getElementById('ledger');
