@@ -601,7 +601,70 @@ const Simplex = (() => {
 (() => {
   const cv = document.getElementById('field');
   const gl = cv.getContext('webgl', { alpha: true, antialias: false });
-  if (!gl) { cv.style.display = 'none'; return; }
+  if (!gl) {
+    /* ---- 2D Canvas fallback (WebGL blocked by extension/settings) ---- */
+    const ctx = cv.getContext('2d');
+    if (!ctx) return;
+    let W = 0, H = 0, N = 0;
+    const FREQ = 0.0016, TSPEED = 0.045, RADIUS = 160;
+    const mouse = { x: -9999, y: -9999, active: false };
+    let px, py, vx, vy, spd, green, alpha;
+    function seed2d() {
+      const rect = cv.getBoundingClientRect();
+      if (!rect.width || !rect.height) { requestAnimationFrame(seed2d); return; }
+      W = rect.width; H = rect.height;
+      cv.width = W * DPR; cv.height = H * DPR;
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      N = Math.min(3000, Math.floor(W * H / 600));
+      px = new Float32Array(N); py = new Float32Array(N);
+      vx = new Float32Array(N); vy = new Float32Array(N);
+      spd = new Float32Array(N); green = new Uint8Array(N);
+      alpha = new Float32Array(N);
+      for (let i = 0; i < N; i++) {
+        px[i] = Math.random() * W; py[i] = Math.random() * H;
+        spd[i] = 12 + Math.random() * 6;
+        green[i] = Math.random() < 1/180 ? 1 : 0;
+        alpha[i] = green[i] ? 1.0 : 0.35 + Math.random() * 0.35;
+      }
+      if (!RM) init2d();
+      else draw2d(0);
+    }
+    let T = 0, last2 = 0, running2 = false;
+    function draw2d(now) {
+      const dt = Math.min((now - last2) / 1000, 0.05); last2 = now;
+      T += dt * TSPEED / FREQ;
+      ctx.clearRect(0, 0, W, H);
+      const eps = 8;
+      for (let i = 0; i < N; i++) {
+        const dx = px[i] - mouse.x, dy = py[i] - mouse.y;
+        const d2 = dx*dx + dy*dy;
+        if (mouse.active && d2 < RADIUS * RADIUS) {
+          const d = Math.sqrt(d2), push = (1 - d/RADIUS) * 80;
+          vx[i] += (dx/d) * push * dt; vy[i] += (dy/d) * push * dt;
+        }
+        const nx = (px[i] + T) * FREQ, ny = (py[i] + T * 0.6) * FREQ;
+        const n0 = Simplex(nx, ny);
+        const dnx = (Simplex(nx + eps*FREQ, ny) - n0) / eps;
+        const dny = (Simplex(nx, ny + eps*FREQ) - n0) / eps;
+        const m = Math.sqrt(dnx*dnx + dny*dny) || 1;
+        vx[i] += ((dny/m)*spd[i] - vx[i]) * Math.min(1, dt*2.5);
+        vy[i] += ((-dnx/m)*spd[i] - vy[i]) * Math.min(1, dt*2.5);
+        px[i] += vx[i]*dt; py[i] += vy[i]*dt;
+        if (px[i] < -4) px[i] += W+8; else if (px[i] > W+4) px[i] -= W+8;
+        if (py[i] < -4) py[i] += H+8; else if (py[i] > H+4) py[i] -= H+8;
+        ctx.fillStyle = green[i] ? `rgba(59,228,119,${alpha[i]})` : `rgba(231,229,223,${alpha[i]})`;
+        ctx.fillRect(px[i], py[i], 1.5, 1.5);
+      }
+      requestAnimationFrame(draw2d);
+    }
+    function init2d() { if (!running2) { running2 = true; requestAnimationFrame(draw2d); } }
+    seed2d();
+    addEventListener('resize', () => { seed2d(); });
+    const hero = document.querySelector('.hero');
+    hero.addEventListener('pointermove', e => { const r = cv.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; mouse.active = true; });
+    hero.addEventListener('pointerleave', () => { mouse.active = false; });
+    return;
+  }
   let W = 0, H = 0, N = 0;
   let px, py, vx, vy, hx, hy, inf, spd, colors, upload;
   let posBuf, colBuf, prog, uRes, uSize;
