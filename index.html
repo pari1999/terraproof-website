@@ -563,7 +563,7 @@ footer a:hover{color:var(--fg-dim)}
 
 <script>
 'use strict';
-const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const RM = false; // matchMedia('(prefers-reduced-motion: reduce)').matches;
 const DPR = Math.min(devicePixelRatio || 1, 2);
 
 /* ================= simplex noise ================= */
