@@ -693,19 +693,28 @@ const Simplex = (() => {
   function stop() { running = false; }
   function sync() { (visible && tabVisible) ? start() : stop(); }
   setup();
-  /* Defer first seed to rAF so the canvas has real layout dimensions.
-     On CDN/HTTPS the inline <script> fires before first layout, causing
-     getBoundingClientRect() to return 0×0 and N=0 (no particles). */
-  requestAnimationFrame(() => {
+
+  /* Set up observers first — before any seed attempt — so that
+     IntersectionObserver is always active and visible/tabVisible are
+     correct when sync() is finally called after a successful seed(). */
+  if (!RM) {
+    new IntersectionObserver(es => { visible = es[0].isIntersecting; sync(); }).observe(cv);
+    document.addEventListener('visibilitychange', () => { tabVisible = !document.hidden; sync(); });
+  }
+
+  /* tryInit() defers to rAF and self-reschedules until the canvas has
+     real pixel dimensions. On CDN/HTTPS the first frame can still return
+     0×0, so we keep retrying rather than giving up after a single rAF. */
+  function tryInit() {
+    const rect = cv.getBoundingClientRect();
+    if (!rect.width || !rect.height) { requestAnimationFrame(tryInit); return; }
     seed();
-    if (RM) { drawFrame(); }
-    else {
-      new IntersectionObserver(es => { visible = es[0].isIntersecting; sync(); }).observe(cv);
-      document.addEventListener('visibilitychange', () => { tabVisible = !document.hidden; sync(); });
-      sync();
-    }
-  });
-  addEventListener('resize', () => { seed(); if (RM) drawFrame(); });
+    if (RM) { drawFrame(); } else { sync(); }
+  }
+  requestAnimationFrame(tryInit);
+
+  /* After a resize, re-seed AND restart the loop if it was stopped. */
+  addEventListener('resize', () => { seed(); if (RM) drawFrame(); else sync(); });
   const hero = document.querySelector('.hero');
   hero.addEventListener('pointermove', e => { const r = cv.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; mouse.active = true; });
   hero.addEventListener('pointerleave', () => { mouse.active = false; });
