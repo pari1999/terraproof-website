@@ -48,7 +48,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
 
 /* header */
 header{position:fixed;inset:0 0 auto 0;z-index:10;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:22px clamp(20px,4vw,48px);mix-blend-mode:difference;}
-.wordmark{font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.22em;text-decoration:none;}
+.wordmark{display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.22em;text-decoration:none;}
+.wordmark img{height:22px;width:auto;}
 .wordmark span{color:var(--green)}
 .hnav{display:flex;gap:26px;align-items:center}
 .hnav a{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;color:var(--fg-dim);transition:color .32s var(--ease-out-instrument);}
@@ -239,7 +240,10 @@ footer a:hover{color:var(--fg-dim)}
 <body>
 
 <header>
-  <a class="wordmark" href="#top">TERRA<span>PROOF</span></a>
+  <a class="wordmark" href="#top">
+    <img src="assets/logo.png" alt="TerraProof">
+    <div>TERRA<span>PROOF</span></div>
+  </a>
   <nav class="hnav">
     <a class="hide" href="#method">Method</a>
     <a class="hide" href="#architecture">Architecture</a>
