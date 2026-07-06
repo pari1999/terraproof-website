@@ -692,13 +692,19 @@ const Simplex = (() => {
   function start() { if (running || RM) return; running = true; last = performance.now(); requestAnimationFrame(step); }
   function stop() { running = false; }
   function sync() { (visible && tabVisible) ? start() : stop(); }
-  setup(); seed();
-  if (RM) { drawFrame(); }
-  else {
-    new IntersectionObserver(es => { visible = es[0].isIntersecting; sync(); }).observe(cv);
-    document.addEventListener('visibilitychange', () => { tabVisible = !document.hidden; sync(); });
-    sync();
-  }
+  setup();
+  /* Defer first seed to rAF so the canvas has real layout dimensions.
+     On CDN/HTTPS the inline <script> fires before first layout, causing
+     getBoundingClientRect() to return 0×0 and N=0 (no particles). */
+  requestAnimationFrame(() => {
+    seed();
+    if (RM) { drawFrame(); }
+    else {
+      new IntersectionObserver(es => { visible = es[0].isIntersecting; sync(); }).observe(cv);
+      document.addEventListener('visibilitychange', () => { tabVisible = !document.hidden; sync(); });
+      sync();
+    }
+  });
   addEventListener('resize', () => { seed(); if (RM) drawFrame(); });
   const hero = document.querySelector('.hero');
   hero.addEventListener('pointermove', e => { const r = cv.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; mouse.active = true; });
