@@ -138,51 +138,7 @@ h2 em{font-style:normal;color:var(--green)}
 .mstep p{font-size:15px;line-height:1.6;color:var(--fg-dim);max-width:44em}
 @media(max-width:640px){.mstep{grid-template-columns:1fr;gap:12px}}
 
-/* live console (from theme) */
-.console{border:1px solid var(--line);position:relative;background:rgba(231,229,223,.015);}
-.console::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.14) 0 1px,transparent 1px 3px);opacity:.35;}
-.console-titlebar{display:flex;justify-content:space-between;align-items:center;gap:16px;border-bottom:1px solid var(--line);padding:12px 18px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-dim);}
-.console-titlebar .dot{color:var(--green)}
-.console-body{display:grid;grid-template-columns:1fr 380px}
-@media(max-width:920px){.console-body{grid-template-columns:1fr}}
-.feed{position:relative;border-right:1px solid var(--line);aspect-ratio:16/10;overflow:hidden;background:#080B09;}
-@media(max-width:920px){.feed{border-right:none;border-bottom:1px solid var(--line)}}
-#feedcv{position:absolute;inset:0;width:100%;height:100%}
-.feed-vignette{position:absolute;inset:0;pointer-events:none;background:radial-gradient(120% 90% at 50% 45%,transparent 55%,rgba(0,0,0,.55));}
-.feed-hud{position:absolute;top:12px;left:14px;right:14px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--fg-dim);text-transform:uppercase;pointer-events:none;}
-.rec{color:var(--green)}
-.rec::before{content:"●";margin-right:6px;animation:blink 2.4s steps(1) infinite}
-@keyframes blink{50%{opacity:.25}}
-.bbox{position:absolute;pointer-events:none}
-.bbox svg{overflow:visible;display:block}
-.bbox line{stroke:var(--green);stroke-width:1.5;transition:stroke-dashoffset 90ms linear;}
-.bbox .leader{transition:stroke-dashoffset 180ms linear;stroke-width:1}
-.bbox-label{position:absolute;white-space:nowrap;font-family:var(--mono);font-size:11px;color:var(--fg);background:rgba(12,15,13,.85);border:1px solid var(--green-dim);padding:4px 8px;opacity:0;transition:opacity 150ms var(--ease-out-instrument);}
-.bbox-label .sp{color:var(--green)}
-.bbox.out{opacity:0;transition:opacity .5s var(--ease-inout)}
-.telemetry{display:flex;flex-direction:column}
-.tblock{padding:16px 18px;border-bottom:1px solid var(--line)}
-.tblock:last-child{border-bottom:none;flex:1}
-.tblock h3{font-family:var(--mono);font-size:10px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-faint);margin-bottom:12px;}
-.kv{display:grid;grid-template-columns:auto 1fr;gap:5px 18px;font-family:var(--mono);font-size:12px;line-height:1.7}
-.kv dt{color:var(--fg-dim)}
-.kv dd{text-align:right;font-feature-settings:"tnum"}
-.kv dd.ok{color:var(--green)}
-.spectro{position:relative;height:96px;border:1px solid var(--line);overflow:hidden;background:#080B09}
-#speccv{position:absolute;inset:0;width:100%;height:100%}
-.sweep{position:absolute;top:0;bottom:0;width:44px;right:0;background:linear-gradient(90deg,transparent,rgba(59,228,119,.12));opacity:0;pointer-events:none;}
-.sweep.on{animation:sweep .4s var(--ease-inout)}
-@keyframes sweep{0%{opacity:0}30%{opacity:1}100%{opacity:0}}
-.spec-cap{margin-top:8px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--fg-faint);text-transform:uppercase}
-.ledger{font-family:var(--mono);font-size:11.5px;line-height:1.6;overflow:hidden}
-.ledger-row{display:flex;gap:14px;justify-content:space-between;padding:5px 0;border-bottom:1px dashed rgba(231,229,223,.08);opacity:0;transform:translateY(12px);transition:opacity 260ms var(--ease-out-instrument),transform 260ms var(--ease-out-instrument);font-feature-settings:"tnum";}
-.ledger-row.in{opacity:1;transform:none}
-.ledger-row .t{color:var(--fg-dim)}
-.ledger-row .h{color:var(--fg-faint)}
-.ledger-row .mode{color:var(--green);font-size:10px;letter-spacing:.08em}
-.console-caption{max-width:1240px;margin:26px auto 0;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;font-size:16px;color:var(--fg-dim);}
-.console-caption a{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;color:var(--fg);transition:color .32s var(--ease-out-instrument);white-space:nowrap;}
-.console-caption a:hover{color:var(--green)}
+
 
 /* dashboard screenshots */
 .shots{display:grid;grid-template-columns:1fr 1fr;gap:24px}
@@ -324,7 +280,7 @@ footer a:hover{color:var(--fg-dim)}
       </div>
     </div>
   </div>
-  <a class="scroll-hint" href="#console">↓ See the instrument</a>
+  <a class="scroll-hint" href="#architecture">↓ See the architecture</a>
 </section>
 
 <!-- ============ 2 · PREMISE ============ -->
@@ -395,52 +351,7 @@ footer a:hover{color:var(--fg-dim)}
   </div>
 </section>
 
-<!-- ============ 5 · LIVE CONSOLE ============ -->
-<section class="section tline" id="console">
-  <div class="wrap">
-    <span class="eyebrow sec-eyebrow reveal">§ 04 · The instrument</span>
-    <div class="console reveal">
-      <div class="console-titlebar">
-        <span><span class="dot">●</span>&nbsp; Detection Console</span>
-        <span class="tnum" id="clock">--:--:--</span>
-      </div>
-      <div class="console-body">
-        <div class="feed">
-          <canvas id="feedcv"></canvas>
-          <div class="feed-vignette"></div>
-          <div class="feed-hud"><span class="rec">Optical</span><span>Field-01</span></div>
-          <div id="boxlayer" style="position:absolute;inset:0"></div>
-        </div>
-        <div class="telemetry">
-          <div class="tblock">
-            <h3>Site</h3>
-            <dl class="kv">
-              <dt>Site ID</dt><dd>FIELD-01</dd>
-              <dt>Coordinates</dt><dd>3°08'12"S 60°01'44"W</dd>
-              <dt>Elevation</dt><dd>92 m</dd>
-              <dt>Sensor uptime</dt><dd class="ok tnum" id="uptime">00:00:00</dd>
-              <dt>Optical</dt><dd>1080p · 30 fps</dd>
-              <dt>Acoustic</dt><dd>48 kHz · stereo</dd>
-            </dl>
-          </div>
-          <div class="tblock">
-            <h3>Acoustic channel</h3>
-            <div class="spectro"><canvas id="speccv"></canvas><div class="sweep" id="sweep"></div></div>
-            <div class="spec-cap">Live spectrogram · 0–24 kHz</div>
-          </div>
-          <div class="tblock">
-            <h3>Event ledger</h3>
-            <div class="ledger" id="ledger"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="console-caption reveal">
-      <span>Every detection carries its evidence. Every record can be traced to the sensor that made it.</span>
-      <a href="#pilot">Request Pilot Access →</a>
-    </div>
-  </div>
-</section>
+
 
 <!-- ============ 5 · ARCHITECTURE ============ -->
 <section class="section tline" id="architecture">
@@ -828,155 +739,15 @@ const Simplex = (() => {
   addEventListener('resize', () => { seed(); if (RM) draw(0); });
 })();
 
-/* ================= feed canvas ================= */
-const Feed = (() => {
-  const cv = document.getElementById('feedcv');
-  const ctx = cv.getContext('2d');
-  let W, H, running = false, visible = false;
-  const grain = document.createElement('canvas'); const gctx = grain.getContext('2d');
-  grain.width = 160; grain.height = 100; let lastGrain = 0;
-  const scene = document.createElement('canvas'); const sctx = scene.getContext('2d');
-  function paintScene() {
-    scene.width = W; scene.height = H;
-    const g = sctx.createLinearGradient(0, 0, 0, H);
-    g.addColorStop(0, '#0B0F0C'); g.addColorStop(0.6, '#0D120E'); g.addColorStop(1, '#080B09');
-    sctx.fillStyle = g; sctx.fillRect(0, 0, W, H);
-    sctx.fillStyle = 'rgba(231,229,223,0.03)'; sctx.fillRect(0, H * 0.72, W, H * 0.28);
-    let s = 42; const rnd = () => (s = (s * 16807) % 2147483647) / 2147483647;
-    for (let i = 0; i < 14; i++) {
-      const x = rnd() * W, w0 = 4 + rnd() * 14, h0 = H * (0.5 + rnd() * 0.5);
-      sctx.fillStyle = `rgba(4,6,5,${0.5 + rnd() * 0.4})`;
-      sctx.beginPath(); sctx.moveTo(x - w0 / 2, H);
-      sctx.quadraticCurveTo(x - w0 * 0.2 + (rnd() - 0.5) * 30, H - h0 * 0.6, x + (rnd() - 0.5) * 20, H - h0);
-      sctx.quadraticCurveTo(x + w0 * 0.2, H - h0 * 0.5, x + w0 / 2, H); sctx.fill();
-    }
-  }
-  function refreshGrain() {
-    const img = gctx.createImageData(grain.width, grain.height);
-    for (let i = 0; i < img.data.length; i += 4) { const v = Math.random() * 255; img.data[i] = img.data[i+1] = img.data[i+2] = v; img.data[i+3] = 255; }
-    gctx.putImageData(img, 0, 0);
-  }
-  function seed() {
-    const r = cv.getBoundingClientRect(); W = r.width; H = r.height;
-    cv.width = W * DPR; cv.height = H * DPR; ctx.setTransform(DPR, 0, 0, DPR, 0, 0); paintScene();
-  }
-  let fog = 0;
-  function draw(t) {
-    ctx.clearRect(0, 0, W, H); ctx.drawImage(scene, 0, 0, W, H);
-    fog = t / 30000; const fx = W * (0.5 + 0.4 * Math.sin(fog));
-    const fg = ctx.createRadialGradient(fx, H * 0.5, 0, fx, H * 0.5, W * 0.6);
-    fg.addColorStop(0, 'rgba(231,229,223,0.035)'); fg.addColorStop(1, 'rgba(231,229,223,0)');
-    ctx.fillStyle = fg; ctx.fillRect(0, 0, W, H);
-    if (t - lastGrain > 90) { refreshGrain(); lastGrain = t; }
-    ctx.globalAlpha = 0.07; ctx.drawImage(grain, 0, 0, W, H); ctx.globalAlpha = 1;
-  }
-  function loop(t) { if (!running) return; draw(t); requestAnimationFrame(loop); }
-  seed(); refreshGrain();
-  if (RM) draw(0);
-  else {
-    new IntersectionObserver(es => { visible = es[0].isIntersecting; if (visible && !running) { running = true; requestAnimationFrame(loop); } if (!visible) running = false; }).observe(cv);
-    document.addEventListener('visibilitychange', () => { if (document.hidden) running = false; else if (visible && !running) { running = true; requestAnimationFrame(loop); } });
-  }
-  addEventListener('resize', () => { seed(); if (RM) draw(0); });
-  return { dims: () => ({ W, H }) };
-})();
-
-/* ================= spectrogram ================= */
+/* ================= hero clock ================= */
 (() => {
-  const cv = document.getElementById('speccv'); const ctx = cv.getContext('2d');
-  let W, H, running = false, visible = false, acc = 0, last = 0, X = 0;
-  const chirps = [];
-  function seed() { const r = cv.getBoundingClientRect(); W = Math.max(1, Math.round(r.width)); H = Math.max(1, Math.round(r.height)); cv.width = W; cv.height = H; ctx.fillStyle = '#080B09'; ctx.fillRect(0, 0, W, H); }
-  function column() {
-    ctx.drawImage(cv, -1, 0); ctx.fillStyle = '#080B09'; ctx.fillRect(W - 1, 0, 1, H); X += 1;
-    for (let y = 0; y < H; y += 2) {
-      const band = Simplex(X * 0.03, y * 0.06) * 0.5 + 0.5;
-      const base = Simplex(X * 0.008 + 50, y * 0.02) * 0.5 + 0.5;
-      let v = Math.max(0, band * base - 0.28) * 0.9;
-      v += Math.max(0, (1 - y / H) - 0.72) * 0.5;
-      for (const c of chirps) { const dx = X - c.x0; if (dx >= 0 && dx < c.len) { const cy = c.y0 + c.slope * dx; const dyy = Math.abs(y - cy); if (dyy < 3) v = Math.min(1, v + (1 - dyy / 3) * 0.9); } }
-      if (v > 0.03) { const green = v > 0.55; ctx.fillStyle = green ? `rgba(59,228,119,${Math.min(1, v)})` : `rgba(231,229,223,${v * 0.7})`; ctx.fillRect(W - 1, y, 1, 2); }
-    }
-    while (chirps.length && chirps[0].x0 + chirps[0].len < X - 10) chirps.shift();
-  }
-  function loop(t) { if (!running) return; const dt = Math.min(t - last, 100); last = t; acc += dt * 24 / 1000; while (acc >= 1) { column(); acc -= 1; } requestAnimationFrame(loop); }
-  seed();
-  if (RM) { for (let i = 0; i < W; i++) column(); }
-  else { new IntersectionObserver(es => { visible = es[0].isIntersecting; if (visible && !running) { running = true; last = performance.now(); requestAnimationFrame(loop); } if (!visible) running = false; }).observe(cv); }
-  addEventListener('resize', seed);
-  window.__chirp = () => { const n = 2 + Math.floor(Math.random() * 3); for (let i = 0; i < n; i++) { chirps.push({ x0: X + 2 + i * 6, y0: H * (0.25 + Math.random() * 0.35), slope: (Math.random() - 0.5) * 1.6, len: 8 + Math.random() * 10 }); } };
-})();
-
-/* ================= detection controller ================= */
-(() => {
-  const SPECIES = [
-    { n: 'Panthera leo',           c: [96.8, 99.1], mode: 'optical'  },
-    { n: 'Connochaetes taurinus',  c: [93.2, 97.4], mode: 'optical'  },
-    { n: 'Equus quagga',           c: [94.6, 98.2], mode: 'optical'  },
-    { n: 'Loxodonta africana',     c: [90.1, 95.0], mode: 'optical'  },
-    { n: 'Lamprotornis superbus',  c: [92.4, 97.0], mode: 'acoustic' },
-    { n: 'Coracias caudatus',      c: [91.7, 96.3], mode: 'acoustic' },
-    { n: 'Numida meleagris',       c: [89.9, 94.6], mode: 'acoustic' }
-  ];
-  const boxlayer = document.getElementById('boxlayer');
-  const ledger = document.getElementById('ledger');
-  const sweep = document.getElementById('sweep');
-  const uptimeEl = document.getElementById('uptime');
-  const clockEl = document.getElementById('clock');
-  const t0 = Date.now();
-  const pad = n => String(n).padStart(2, '0');
   const heroClock = document.getElementById('hero-clock');
+  const pad = n => String(n).padStart(2, '0');
   setInterval(() => {
-    const s = Math.floor((Date.now() - t0) / 1000);
-    uptimeEl.textContent = `${pad(Math.floor(s/3600))}:${pad(Math.floor(s/60)%60)}:${pad(s%60)}`;
     const d = new Date();
     const timeStr = `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())} UTC${d.getTimezoneOffset()<=0?'+':'−'}${pad(Math.abs(d.getTimezoneOffset())/60|0)}`;
-    clockEl.textContent = timeStr;
     if (heroClock) heroClock.textContent = timeStr;
   }, 1000);
-  const hex = n => Array.from({length:n}, () => '0123456789ABCDEF'[Math.random()*16|0]).join('');
-  function countUp(el, target) {
-    if (RM) { el.textContent = target.toFixed(1) + '%'; return; }
-    const start = performance.now(), dur = 650;
-    (function tick(t) { const p = Math.min(1, (t - start) / dur); const e = 1 - Math.pow(1 - p, 3); el.textContent = (target * e).toFixed(1) + '%'; if (p < 1) requestAnimationFrame(tick); })(performance.now());
-  }
-  function drawBox(sp, conf) {
-    const { W, H } = Feed.dims(); if (!W) return;
-    const bw = 70 + Math.random() * 90, bh = 50 + Math.random() * 60;
-    const bx = 30 + Math.random() * (W - bw - 60);
-    const by = H * 0.35 + Math.random() * (H * 0.45 - bh);
-    const el = document.createElement('div'); el.className = 'bbox';
-    el.style.cssText = `left:${bx}px;top:${by}px;width:${bw}px;height:${bh}px`;
-    const L = 26; const flip = (bx + bw + 190) > W;
-    const leader = flip ? `<line class="leader" x1="0" y1="0" x2="${-L}" y2="${-L}" stroke-dasharray="${L * 1.5}" stroke-dashoffset="${L * 1.5}"/>` : `<line class="leader" x1="${bw}" y1="0" x2="${bw + L}" y2="${-L}" stroke-dasharray="${L * 1.5}" stroke-dashoffset="${L * 1.5}"/>`;
-    const labelPos = flip ? `right:${bw + L + 4}px;top:${-L - 12}px` : `left:${bw + L + 4}px;top:${-L - 12}px`;
-    el.innerHTML = `<svg width="${bw}" height="${bh}"><line x1="0" y1="0" x2="${bw}" y2="0" stroke-dasharray="${bw}" stroke-dashoffset="${bw}"/><line x1="${bw}" y1="0" x2="${bw}" y2="${bh}" stroke-dasharray="${bh}" stroke-dashoffset="${bh}"/><line x1="${bw}" y1="${bh}" x2="0" y2="${bh}" stroke-dasharray="${bw}" stroke-dashoffset="${bw}"/><line x1="0" y1="${bh}" x2="0" y2="0" stroke-dasharray="${bh}" stroke-dashoffset="${bh}"/>${leader}</svg><div class="bbox-label" style="${labelPos}"><span class="sp">${sp}</span> · <span class="cf tnum">0.0%</span></div>`;
-    boxlayer.appendChild(el);
-    const lines = el.querySelectorAll('svg line');
-    [0, 1, 2, 3].forEach((li, i) => setTimeout(() => { lines[li].style.strokeDashoffset = 0; }, i * 90));
-    setTimeout(() => { lines[4].style.strokeDashoffset = 0; }, 380);
-    setTimeout(() => { el.querySelector('.bbox-label').style.opacity = 1; countUp(el.querySelector('.cf'), conf); }, 560);
-    setTimeout(() => el.classList.add('out'), 3600);
-    setTimeout(() => el.remove(), 4200);
-  }
-  function ledgerRow(sp, mode) {
-    const d = new Date(); const row = document.createElement('div'); row.className = 'ledger-row';
-    row.innerHTML = `<span class="t">${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}</span><span style="flex:1">${sp}</span><span class="mode">${mode.toUpperCase()}</span><span class="h">0x${hex(4)}…${hex(4)}</span>`;
-    ledger.prepend(row);
-    requestAnimationFrame(() => requestAnimationFrame(() => row.classList.add('in')));
-    while (ledger.children.length > 6) ledger.lastChild.remove();
-  }
-  function fire() {
-    const s = SPECIES[Math.random() * SPECIES.length | 0];
-    const conf = s.c[0] + Math.random() * (s.c[1] - s.c[0]);
-    if (s.mode === 'optical') drawBox(s.n, conf);
-    if (window.__chirp) window.__chirp();
-    sweep.classList.remove('on'); void sweep.offsetWidth; sweep.classList.add('on');
-    setTimeout(() => ledgerRow(s.n, s.mode), s.mode === 'optical' ? 1100 : 400);
-    schedule();
-  }
-  function schedule() { setTimeout(fire, RM ? 9000 : 4000 + Math.random() * 5000); }
-  setTimeout(fire, 1400);
 })();
 
 /* ================= reveal on scroll ================= */
